@@ -1,0 +1,320 @@
+  * {
+    font-family: 'silgothic';
+    src: url('https://ff.static.1001fonts.net/s/e/segan.light.ttf') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-size: 2.4vmin;
+  }
+  body {
+    background-size: cover;
+  }
+  #container1 {
+    position: absolute;
+    top: 0%; left: 0%;
+    background-color: #888;
+    width: 16%; height: 25%;
+  }
+  #container2 {
+    position: absolute;
+    top: 0px; left: 16%;
+    background-color: #999;
+    width: 30%; height: 60%;
+  }
+  #container3 {
+    position: absolute;
+    top: 25%; left: 0px;
+    background-color: #757575;
+    width: 16%; height: 75%;
+  }
+  #container4 {
+    position: absolute;
+    top: 60%; left: 16%;
+    background-color: #888;
+    width: 55%; height: 40%;
+  }
+  #container5 {
+    position: absolute;
+    top: 0%; left: 46%;
+    background-color: #909090;
+    width: 25%; height: 60%;
+  }
+  body {
+    background-color: #aaa;
+  }
+  button {
+    border: none;
+    outline: none;
+  }
+  #mine {
+    width: 12.5%; height: 4.5%;
+    position: absolute;
+    top: 1.5%; left: 1.5%;
+    background-color: #666;
+    color: #aaa;
+  }
+  #mine:hover {
+    background-color: lightgray;
+    color: #555
+  }
+  #coin {
+    position: absolute;
+    top: 12%; left: 1.5%;
+    color: #ee6;
+    text-shadow: 0px 0px 5px #ee6
+  }
+  #crystal {
+    position: absolute;
+    top: 15%; left: 1.5%;
+    color: #aae;
+    text-shadow: 0px 0px 5px #aae
+  }
+  #cooldown {
+    font-size: 3vmin; 
+    position: absolute; 
+    top: 7.5%; left: 1.5%; 
+    color: #555;
+    text-shadow: 0px 0px 10px #444;
+    animation: light 9s infinite;
+  }
+  #curpicklv {
+    position: absolute;
+    top: 27%; left: 1%;
+    font-size: 3.2vmin;
+    color: #742;
+  }
+  #picklvup {
+    position: absolute;
+    top: 32%; left: 1%;
+    color: #aaa;
+    font-size: 2vmin
+  }
+  #stonepermine { 
+    position: absolute;
+    top: 250px; left: 12px;
+    display: none;
+  }
+  #pickupgrade1 {
+    position: absolute;
+    top: 38%; left: 1%;
+    width: 13.5%; height: 9%;
+    background-color: #888;
+  }
+  #pickupgrade2 {
+    position: absolute;
+    top: 49%; left: 1%;
+    width: 13.5%; height: 9%;
+    background-color: #888;
+  }
+  #pickupgrade3 {
+    position: absolute;
+    top: 60%; left: 1%;
+    width: 13.5%; height: 9%;
+    background-color: #888;
+  }
+  #pickupgrade4 {
+    position: absolute;
+    top: 71%; left: 1%;
+    width: 13.5%; height: 9%;
+    background-color: #888;
+  }
+  #pickupgrade5 {
+    position: absolute;
+    top: 82%; left: 1%;
+    width: 13.5%; height: 9%;
+    background-color: #888;
+  }
+  .pickupgradedetail {
+    position: relative;
+    top: 10%; left: 5%;
+    font-size: smaller;
+    color: #444;
+    text-shadow: 0px 0px 10px #444;
+  }
+  .pickupgradeprice {
+    position: relative;
+    top: 20%; left: 5%;
+    color: #bbb;
+  }
+  .pickupgradeprice.buyable {
+    color: #fff;
+  }
+  #autominerlocked {
+    position: absolute;
+    top: 62%; left: 18%;
+    background-color: #888;
+    font-size: 3vmin;
+    color: #555;
+    text-shadow: 0px 0px 10px #444;
+    width: 15%; height: 15%;
+  }
+  #save {
+    position: absolute;
+    top: 75%; left: 75%;
+    width: 8%; height: 6%;
+    font-size: 2.8vmin;
+    color: black;
+    background-color: #ccc;
+  }
+  #save:hover {
+    background-color: #bbb;
+  }
+  #load {
+    position: absolute;
+    top: 75%; left: 84%;
+    width: 8%; height: 6%;
+    font-size: 2.8vmin;
+    color: black;
+    background-color: #ccc;
+  }
+  #export {
+    position: absolute;
+    top: 82%; left: 75%;
+    width: 8%; height: 6%;
+    font-size: 2.8vmin;
+    color: black;
+    background-color: #ccc;
+  }
+  #import {
+    position: absolute;
+    top: 82%; left: 84%;
+    width: 8%; height: 6%;
+    font-size: 2.8vmin;
+    color: black;
+    background-color: #ccc;
+  }
+  #discord {
+    position: absolute;
+    top: 89%; left: 75%;
+    width: 8%; height: 6%;
+    font-size: 2.8vmin;
+    color: black;
+    background-color: #ccc;
+  }
+  #reset {
+    position: absolute;
+    top: 89%; left: 84%;
+    width: 8%; height: 6%;
+    font-size: 2.8vmin;
+    color: black;
+    background-color: #ccc;
+  }
+  #load:hover {
+    background-color: #bbb;
+  }
+  #export:hover {
+    background-color: #bbb;
+  }
+  #import:hover {
+    background-color: #bbb;
+  }
+  #reset:hover {
+    background-color: #bbb;
+  }
+  #discord:hover {
+    background-color: #bbb;
+  }
+  #autominerselected {
+    position: absolute;
+    top: 65%; left: 18%;
+  }
+  .sell {
+    background-color: #999;
+    color: #222;
+    font-size: 2.2vmin
+  }
+  #autominerintervalup {
+    position: absolute;
+    top: 65%; left: 28.3%;
+    width: 13.7%; height: 12%;
+    font-size: 2.2vmin;
+    background-color: #777;
+    color: #bbb;
+  }
+  #autominertierup {
+    position: absolute;
+    top: 65%; left: 43%;
+    width: 12%; height: 12%;
+    font-size: 2.2vmin;
+    background-color: #777;
+    color: #bbb;
+  }
+  #autominerpowerup {
+    position: absolute;
+    top: 65%; left: 56%;
+    width: 12%; height: 12%;
+    font-size: 2.2vmin;
+    background-color: #777;
+    color: #bbb;
+  }
+  #autominerselectleft {
+    position: absolute;
+    top: 70%; left: 18%;
+    font-size: 20px;
+    background-color: #888;
+  }
+  #autominerselectright {
+    position: absolute;
+    top: 70%; left: 23%;
+    font-size: 20px;
+    background-color: #888;
+  }
+  #coinupgrade {
+    position: absolute;
+    top: 95.25%; left: 0.25%;
+    width: 7.6%; height: 4.5%;
+    background-color: #999;
+    border-width: 2px;
+    border-color: #555
+  }
+  #oreupgrade {
+    position: absolute;
+    top: 95.25%; left: 8.15%;
+    width: 7.6%; height: 4.5%;
+    background-color: #999;
+    border-width: 2px;
+    border-color: #555
+  }
+  #artifactlocked {
+    position: absolute;
+    top: 2%; left: 50%;
+    background-color: #909090;
+    font-size: 3vmin;
+    color: #555;
+    text-shadow: 0px 0px 10px #444;
+    width: 15%; height: 15%;
+  }
+  #commonbox {
+    position: absolute;
+    top: 2%; left: 50%;
+    color: #fb5
+  }
+  #uncommonbox {
+    position: absolute;
+    top: 5%; left: 50%;
+    color: #dcc
+  }
+  #rarebox {
+    position: absolute;
+    top: 8%; left: 50%;
+    color: #aae
+  }
+  #epicbox {
+    position: absolute;
+    top: 11%; left: 50%;
+    color: #c9e
+  }
+  #legendbox {
+    position: absolute;
+    top: 14%; left: 50%;
+    color: #ee6
+  }
+  @keyframes light {
+    0%, 100%{
+      color: #aaa; 
+      text-shadow: 0px 0px 14px #999;
+    }
+    50%{
+      color: #ddd; 
+      text-shadow: 0px 0px 5px #ccc;
+    }
+  }
