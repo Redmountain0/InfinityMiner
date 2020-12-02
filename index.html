@@ -229,24 +229,10 @@
         localStorage.diamond = diamond
         localStorage.emerald = emerald
         localStorage.coin = coin
-        localStorage.upgrades = upgrades
-        localStorage.cooldown = cooldown
-        localStorage.sellmult = sellmult
         localStorage.picklevel = picklevel
         localStorage.autominerunlock = Number(autominerunlock)
         localStorage.artifactunlock = Number(artifactunlock)
         localStorage.autominertier = autominertier
-        localStorage.autominerinterval = autominerinterval
-        localStorage.autominerpower = autominerpower
-        localStorage.autominerpowermult = autominerpowermult
-        localStorage.stonetype = JSON.stringify(stonetype)
-        localStorage.coppertype = JSON.stringify(coppertype)
-        localStorage.irontype = JSON.stringify(irontype)
-        localStorage.silvertype = JSON.stringify(silvertype)
-        localStorage.goldtype = JSON.stringify(goldtype)
-        localStorage.platinumtype = JSON.stringify(platinumtype)
-        localStorage.diamondtype = JSON.stringify(diamondtype)
-        localStorage.emeraldtype = JSON.stringify(emeraldtype)
         localStorage.intervalupgs = intervalupgs
         localStorage.powerupgs = powerupgs
         localStorage.minecount = minecount
@@ -257,33 +243,12 @@
       function load() {
         upgradeboughtlist = JSON.parse(localStorage.upgradebought || "[]")
         oreupgradeboughtlist = JSON.parse(localStorage.oreupgradebought || "[]")
-        stone = Number(localStorage.stone || 0)
-        copper = Number(localStorage.copper || 0)
-        iron = Number(localStorage.iron || 0)
-        silver = Number(localStorage.silver || 0)
-        gold = Number(localStorage.gold || 0)
-        platinum = Number(localStorage.platinum || 0)
-        diamond = Number(localStorage.diamond || 0)
-        emerald = Number(localStorage.emerald || 0)
-        coin = Number(localStorage.coin || 0)
-        upgrades = Number(localStorage.upgrades || 0)
-        cooldown = Number(localStorage.cooldown || 50)
         sellmult = Number(localStorage.sellmult || 1)
         picklevel = Number(localStorage.picklevel || 0)
         autominertier = Number(localStorage.autominertier || 1)
-        autominerinterval = Number(localStorage.autominerinterval || 3)
-        autominerpower = Number(localStorage.autominerpower || 100)
         autominerpowermult = Number(localStorage.autominerpowermult || 1)
         intervalupgs = Number(localStorage.intervalupgs || 0)
         powerupgs = Number(localStorage.powerupgs || 0)
-        stonetype = JSON.parse(localStorage.stonetype || "[2, 100, 1, 1]")
-        coppertype = JSON.parse(localStorage.coppertype || "[0, 50, 1, 0]")
-        irontype = JSON.parse(localStorage.irontype || "[0, 30, 1, 0]")
-        silvertype = JSON.parse(localStorage.silvertype || "[0, 10, 1, 0]")
-        goldtype = JSON.parse(localStorage.goldtype || "[0, 5, 1, 0]")
-        platinumtype = JSON.parse(localStorage.platinumtype || "[0, 3, 1, 0]")
-        diamondtype = JSON.parse(localStorage.diamondtype || "[0, 2, 1, 0]")
-        emeraldtype = JSON.parse(localStorage.emeraldtype || "[0, 1, 1, 0]")
         artifactstat = JSON.parse(localStorage.artifacts || `[{"id":0,"level":0,"maxlevel":30,"name":"Improved Gear","lore":"Decrease Autominer Interval Limit","rarity":0},{"id":1,"level":0,"maxlevel":20,"name":"Broken Necklace","lore":"Critical Mine with a constant Probability","rarity":0},{"id":2,"level":0,"maxlevel":50,"name":"Slow Machine","lore":"Increase Cooldown, but you get more ores","rarity":0},{"id":3,"level":0,"maxlevel":15,"name":"Automated Clock","lore":"Increase Autominer Power based on Time Played","rarity":1},{"id":4,"level":0,"maxlevel":30,"name":"Enchanted Ore","lore":"Increase Sell Multiplier based on Mine Count","rarity":1},{"id":5,"level":0,"maxlevel":10,"name":"Mechanical Pickaxe","lore":"Mine Automatically(Not Autominer), but Cooldown in longer","rarity":2}]`)
         box = JSON.parse(localStorage.box || "[0, 0, 0, 0, 0]")
         playtime = Number(localStorage.playtime || 0)
@@ -304,26 +269,46 @@
         // upgrade load
         upgradecopied = []
         upgradelist = []
+        upgradeboughtlist2 = []
+        oreupgradeboughtlist2 = []
         deepcopy(upgradelistr, upgradelist)
         deepcopy(oreupgradelistr, oreupgradelist)
         deepcopy(upgradeboughtlist, upgradecopied)
         deepcopy(oreupgradeboughtlist, oreupgradecopied)
         upgradecopied.sort(function(a, b) {
-        return b - a;
+        return a - b;
         })
         oreupgradecopied.sort(function(a, b) {
-        return b - a;
+        return a - b;
         })
         console.log(upgradecopied)
         console.log(oreupgradecopied)
-        while (upgradecopied.length != 0) {
-          upgradelist.splice(upgradecopied[0], 1)
-          upgradecopied.shift()
+        for (i=0; i<upgradecopied.length; i++) {
+          upgradeboughtlist2.push(upgradecopied[i] - i)
         }
-        while (oreupgradecopied.length != 0) { 
-          oreupgradelist.splice(oreupgradecopied[0], 1)
-          oreupgradecopied.shift()
+        for (i=0; i<oreupgradecopied.length; i++) {
+          oreupgradeboughtlist2.push(upgradecopied[i] - i)
         }
+        console.log(upgradeboughtlist2)
+        coin = 1e308
+        stone = 1e308, copper = 1e308, iron = 1e308, silver = 1e308, gold = 1e308, platinum = 1e308, diamond = 1e308, emerald = 1e308
+        selectedupgrade = 0
+        for (i=0; i<upgradeboughtlist2.length; i++) {
+          pickupgradev2(upgradeboughtlist2[i])
+        }
+        selectedupgrade = 1
+        for (i=0; i<oreupgradeboughtlist2.length; i++) {
+          pickupgradev2(oreupgradeboughtlist2[i])
+        }
+        stone = Number(localStorage.stone || 0)
+        copper = Number(localStorage.copper || 0)
+        iron = Number(localStorage.iron || 0)
+        silver = Number(localStorage.silver || 0)
+        gold = Number(localStorage.gold || 0)
+        platinum = Number(localStorage.platinum || 0)
+        diamond = Number(localStorage.diamond || 0)
+        emerald = Number(localStorage.emerald || 0)
+        coin = Number(localStorage.coin || 0)
         upgradelist.push('Unknown | Infinity Coin')
         upgradelist.push('Unknown | Infinity Coin')
         upgradelist.push('Unknown | Infinity Coin')

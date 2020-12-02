@@ -196,6 +196,60 @@ function pickupgrade(num) {
     }
   }
 }
+function pickupgradev2(num) {
+  if (selectedupgrade == 0) {
+    if (upgradelist[num].split("|")[1].split(" ")[1] <= coin) {
+      undef = upgrade(num, upgradelist)
+      console.log(undef)
+      if (undef == 0) {return}
+      coin -= upgradelist[num].split("|")[1].split(" ")[1]
+      upgrades += 1
+
+      upgradelist.splice(num, 1)
+      upgradeboughtlist.sort(function(a, b) {
+        return a - b;
+      })
+    }
+  } else if (selectedupgrade == 1) {
+    cost = oreupgradelist[num].split("|")[1].split(" ")[2]
+    console.log(orelist[orelists.indexOf(cost)])
+    console.log(oreupgradelist[num].split("|")[1].split(" ")[1])
+    if (orelist[orelists.indexOf(cost)] >= oreupgradelist[num].split("|")[1].split(" ")[1]) {
+      undef = upgrade(num, oreupgradelist)
+      console.log(undef)
+      if (undef == 0) {return}
+      if (cost == "Stone") {
+        stone -= oreupgradelist[num].split("|")[1].split(" ")[1]
+      }
+      if (cost == "Copper") {
+        copper -= oreupgradelist[num].split("|")[1].split(" ")[1]
+      }
+      if (cost == "Iron") {
+        iron -= oreupgradelist[num].split("|")[1].split(" ")[1]
+      }
+      if (cost == "Silver") {
+        silver -= oreupgradelist[num].split("|")[1].split(" ")[1]
+      }
+      if (cost == "Gold") {
+        gold -= oreupgradelist[num].split("|")[1].split(" ")[1]
+      }
+      if (cost == "Platinum") {
+        platinum -= oreupgradelist[num].split("|")[1].split(" ")[1]
+      }
+      if (cost == "Diamond") {
+        diamond -= oreupgradelist[num].split("|")[1].split(" ")[1]
+      }
+      if (cost == "Emerald") {
+        emerald -= oreupgradelist[num].split("|")[1].split(" ")[1]
+      }
+      oreupgrades += 1
+      oreupgradelist.splice(num, 1)
+      oreupgradeboughtlist.sort(function(a, b) {
+        return a - b;
+      })
+    }
+  }
+}
 function upgrade(num, upgradelist) {
   if (upgradelist[num].split("|")[0].split(" ")[0] == "Stone") {
         if (upgradelist[num].split("|")[0].split(" ")[1] == "Max") {
