@@ -199,7 +199,7 @@ function pickupgrade(num) {
 function pickupgradev2(num) {
   if (selectedupgrade == 0) {
     if (upgradelist[num].split("|")[1].split(" ")[1] <= coin) {
-      undef = upgrade(num, upgradelist)
+      undef = upgradev2(num, upgradelist)
       console.log(undef)
       if (undef == 0) {return}
       coin -= upgradelist[num].split("|")[1].split(" ")[1]
@@ -215,7 +215,7 @@ function pickupgradev2(num) {
     console.log(orelist[orelists.indexOf(cost)])
     console.log(oreupgradelist[num].split("|")[1].split(" ")[1])
     if (orelist[orelists.indexOf(cost)] >= oreupgradelist[num].split("|")[1].split(" ")[1]) {
-      undef = upgrade(num, oreupgradelist)
+      undef = upgradev2(num, oreupgradelist)
       console.log(undef)
       if (undef == 0) {return}
       if (cost == "Stone") {
@@ -249,6 +249,121 @@ function pickupgradev2(num) {
       })
     }
   }
+}
+function upgradev2(num, upgradelist) {
+  if (upgradelist[num].split("|")[0].split(" ")[0] == "Stone") {
+        if (upgradelist[num].split("|")[0].split(" ")[1] == "Max") {
+          stonetype[3] += Number(upgradelist[num].split("|")[0].split(" ")[2])
+        }
+        if (upgradelist[num].split("|")[0].split(" ")[1] == "Base") {
+          stonetype[2] += Number(upgradelist[num].split("|")[0].split(" ")[2])
+        }
+      }
+      if (upgradelist[num].split("|")[0].split(" ")[0] == "Copper") {
+        if (upgradelist[num].split("|")[0].split(" ")[1] == "Chance") {
+          coppertype[1] += Number(upgradelist[num].split("|")[0].split(" ")[2].substring(1,3))
+        }
+        if (upgradelist[num].split("|")[0].split(" ")[1] == "Max") {
+          coppertype[3] += Number(upgradelist[num].split("|")[0].split(" ")[2])
+        }
+        if (upgradelist[num].split("|")[0].split(" ")[1] == "Base") {
+          coppertype[2] += Number(upgradelist[num].split("|")[0].split(" ")[2])
+        }
+        
+      }
+      if (upgradelist[num].split("|")[0].split(" ")[0] == "Iron") {
+        if (upgradelist[num].split("|")[0].split(" ")[1] == "Chance") {
+          irontype[1] += Number(upgradelist[num].split("|")[0].split(" ")[2].substring(1,3))
+        }
+        if (upgradelist[num].split("|")[0].split(" ")[1] == "Max") {
+          irontype[3] += Number(upgradelist[num].split("|")[0].split(" ")[2])
+        }
+        if (upgradelist[num].split("|")[0].split(" ")[1] == "Base") {
+            irontype[2] += Number(upgradelist[num].split("|")[0].split(" ")[2])
+        }
+      }
+      if (upgradelist[num].split("|")[0].split(" ")[0] == "Silver") {
+        if (upgradelist[num].split("|")[0].split(" ")[1] == "Chance") {
+          silvertype[1] += Number(upgradelist[num].split("|")[0].split(" ")[2].substring(1,3))
+        }
+        if (upgradelist[num].split("|")[0].split(" ")[1] == "Max") {
+          silvertype[3] += Number(upgradelist[num].split("|")[0].split(" ")[2])
+        }
+        if (upgradelist[num].split("|")[0].split(" ")[1] == "Base") {
+            silvertype[2] += Number(upgradelist[num].split("|")[0].split(" ")[2])
+        }
+      }
+      if (upgradelist[num].split("|")[0].split(" ")[0] == "Gold") {
+        if (upgradelist[num].split("|")[0].split(" ")[1] == "Chance") {
+          if (upgradelist[num].split("|")[0].split(" ")[2].length == 4) {
+            goldtype[1] += Number(upgradelist[num].split("|")[0].split(" ")[2].substring(1,3))
+          } else {
+            goldtype[1] += Number(upgradelist[num].split("|")[0].split(" ")[2].substring(1,2))
+          }
+        }
+        if (upgradelist[num].split("|")[0].split(" ")[1] == "Max") {
+            goldtype[3] += Number(upgradelist[num].split("|")[0].split(" ")[2])
+        }
+        if (upgradelist[num].split("|")[0].split(" ")[1] == "Base") {
+            goldtype[2] += Number(upgradelist[num].split("|")[0].split(" ")[2])
+        }
+      }
+      if (upgradelist[num].split("|")[0].split(" ")[0] == "Platinum") {
+        if (upgradelist[num].split("|")[0].split(" ")[1] == "Chance") {
+            if (upgradelist[num].split("|")[0].split(" ")[2].length == 4) {
+              platinumtype[1] += Number(upgradelist[num].split("|")[0].split(" ")[2].substring(1,3))
+            } else {
+              platinumtype[1] += Number(upgradelist[num].split("|")[0].split(" ")[2].substring(1,2))
+            }
+        }
+        if (upgradelist[num].split("|")[0].split(" ")[1] == "Max") {
+            platinumtype[3] += Number(upgradelist[num].split("|")[0].split(" ")[2])
+        }
+        if (upgradelist[num].split("|")[0].split(" ")[1] == "Base") {
+            platinumtype[2] += Number(upgradelist[num].split("|")[0].split(" ")[2])
+        }
+      }
+      if (upgradelist[num].split("|")[0].split(" ")[0] == "Diamond") {
+        if (upgradelist[num].split("|")[0].split(" ")[1] == "Chance") {
+            if (upgradelist[num].split("|")[0].split(" ")[2].length == 4) {
+              diamondtype[1] += Number(upgradelist[num].split("|")[0].split(" ")[2].substring(1,3))
+            } else {
+              diamondtype[1] += Number(upgradelist[num].split("|")[0].split(" ")[2].substring(1,2))
+            }
+        }
+        if (upgradelist[num].split("|")[0].split(" ")[1] == "Max") {
+          diamondtype[3] += Number(upgradelist[num].split("|")[0].split(" ")[2])
+        }
+        if (upgradelist[num].split("|")[0].split(" ")[1] == "Base") {
+          diamondtype[2] += Number(upgradelist[num].split("|")[0].split(" ")[2])
+        }
+      }
+      if (upgradelist[num].split("|")[0].split(" ")[0] == "Emerald") {
+        if (upgradelist[num].split("|")[0].split(" ")[1] == "Chance") {
+            if (upgradelist[num].split("|")[0].split(" ")[2].length == 4) {
+              emeraldtype[1] += Number(upgradelist[num].split("|")[0].split(" ")[2].substring(1,3))
+            } else {
+              emeraldtype[1] += Number(upgradelist[num].split("|")[0].split(" ")[2].substring(1,2))
+            }
+        }
+        if (upgradelist[num].split("|")[0].split(" ")[1] == "Max") {
+          emeraldtype[3] += Number(upgradelist[num].split("|")[0].split(" ")[2])
+        }
+        if (upgradelist[num].split("|")[0].split(" ")[1] == "Base") {
+          emeraldtype[2] += Number(upgradelist[num].split("|")[0].split(" ")[2])
+        }
+      }
+      if (upgradelist[num].split("|")[0].split(" ")[0] == "Cooldown") {
+        cooldown -= 10 * Number(upgradelist[num].split("|")[0].split(" ")[1].substring(1,4))
+      }
+      if (upgradelist[num].split("|")[0].split(" ")[0] == "Sell") {
+        sellmult *= Number(upgradelist[num].split("|")[0].split(" ")[2].substring(1,4))
+      }
+      if (upgradelist[num].split("|")[0].split(" ")[0] == "Autominer") {
+        if (upgradelist[num].split("|")[0].split(" ")[1] == "Power") {
+          autominerpowermult *= Number(upgradelist[num].split("|")[0].split(" ")[2].substring(1,upgradelist[num].split("|")[0].split(" ")[2].length))
+        }
+      }
 }
 function upgrade(num, upgradelist) {
   if (upgradelist[num].split("|")[0].split(" ")[0] == "Stone") {

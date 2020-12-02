@@ -281,15 +281,12 @@
         oreupgradecopied.sort(function(a, b) {
         return a - b;
         })
-        console.log(upgradecopied)
-        console.log(oreupgradecopied)
         for (i=0; i<upgradecopied.length; i++) {
           upgradeboughtlist2.push(upgradecopied[i] - i)
         }
         for (i=0; i<oreupgradecopied.length; i++) {
           oreupgradeboughtlist2.push(upgradecopied[i] - i)
         }
-        console.log(upgradeboughtlist2)
         coin = 1e308
         stone = 1e308, copper = 1e308, iron = 1e308, silver = 1e308, gold = 1e308, platinum = 1e308, diamond = 1e308, emerald = 1e308
         selectedupgrade = 0
@@ -300,6 +297,7 @@
         for (i=0; i<oreupgradeboughtlist2.length; i++) {
           pickupgradev2(oreupgradeboughtlist2[i])
         }
+        selectedupgrade = 0
         stone = Number(localStorage.stone || 0)
         copper = Number(localStorage.copper || 0)
         iron = Number(localStorage.iron || 0)
@@ -309,6 +307,28 @@
         diamond = Number(localStorage.diamond || 0)
         emerald = Number(localStorage.emerald || 0)
         coin = Number(localStorage.coin || 0)
+
+        if (picklevel >= 0) {
+            coppertype[0] = 1
+          }
+          if (picklevel >= 1) {
+            irontype[0] = 1
+          }
+          if (picklevel >= 2) {
+            silvertype[0] = 1
+          }
+          if (picklevel >= 3) {
+            goldtype[0] = 1
+          }
+          if (picklevel >= 4) {
+            platinumtype[0] = 1
+          }
+          if (picklevel >= 5) {
+            diamondtype[0] = 1
+          }
+          if (picklevel >= 6) {
+            emeraldtype[0] = 1
+          }
         upgradelist.push('Unknown | Infinity Coin')
         upgradelist.push('Unknown | Infinity Coin')
         upgradelist.push('Unknown | Infinity Coin')

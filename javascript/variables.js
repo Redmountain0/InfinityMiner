@@ -89,6 +89,7 @@ oreupgradelistr =
     'Sell Multiplier x1.6 | 1 Emerald', 'Diamond Max +25 | 2 Emerald', 'Autominer Power x2.0 | 10 Emerald',
     'Stone Base +8.0e7 | 4.0e10 Stone', 'Copper Base +5.0e7 | 2.0e9 Copper', '']
 function deepcopy(a, b) {
+  if (a.length == b.length) {return}
   for (j = 0; a.length != b.length; j++) {
     b.push(a[j])
   }
