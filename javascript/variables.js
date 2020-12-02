@@ -21,6 +21,8 @@ selectedore = 1
 autominerinterval = 3
 intervalupgs = 0
 powerupgs = 0
+playtime = 0
+minecount = 0
 upgradelistr = ['Stone Max +1 | 50 Coin', 'Cooldown -1.0s | 80 Coin', 'Stone Base +1 | 120 Coin',
   'Copper Chance +10% | 300 Coin', 'Stone Max +3 | 350 Coin', 'Copper Chance +15% | 400 Coin',
   'Stone Base +2 | 400 Coin', 'Sell Multiplier x1.5 | 500 Coin', 'Cooldown -0.5s | 500 Coin',
@@ -68,7 +70,9 @@ upgradelistr = ['Stone Max +1 | 50 Coin', 'Cooldown -1.0s | 80 Coin', 'Stone Bas
   'Diamond Chance +20% | 4.0e16 Coin', 'Copper Max +3.0e6 | 1.0e17 Coin', 'Diamond Max +1 | 2.5e17 Coin',
   'Gold Base +800 | 3.0e17 Coin', 'Diamond Base +1 | 5.0e17 Coin', 'Sell Multiplier x2.5 | 8.0e17 Coin',
   'Gold Max +2000 | 2.0e18 Coin', 'Diamond Max +3 | 3.0e18 Coin', 'Iron Base +8.0e5 | 3.0e18 Coin',
-  'Iron Max +1.0e6 | 3.5e18 Coin']
+  'Iron Max +1.0e6 | 3.5e18 Coin', 'Diamond Base +10 | 5.0e18 Coin', 'Emerald Chance +1% | 6.0e18 Coin',
+  'Sell Multiplier x2.0 | 1.0e19 Coin', 'Emerald Chance +1% | 1.0e19 Coin', 'Emerald Chance +2% | 1.5e19 Coin',
+  'Emerald Chance +2% | 2.0e19 Coin', 'Emerald Chance +3% | 4.0e19 Coin']
 oreupgradelistr =
   ['Sell Multiplier x5.0 | 1.4e7 Stone', 'Gold Base +25 | 15 Platinum', 'Iron Base +1500 | 1.0e5 Iron',
     'Copper Max +1.0e4 | 5.5e5 Copper', 'Cooldown -0.1s | 50 Platinum', 'Platinum Max +1 | 4000 Gold',
@@ -81,7 +85,9 @@ oreupgradelistr =
     'Diamond Chance +25% | 80 Diamond', 'Diamond Chance +25% | 100 Diamond', 'Gold Max +300 | 2.0e4 Platinum',
     'Diamond Base +1 | 250 Diamond', 'Silver Max +5.0e4 | 8.0e5 Gold', 'Stone Max +1.0e7 | 1.0e5 Platinum',
     'Stone Base +1.5e7 | 400 Diamond', 'Copper Base +9.0e6 | 5.0e9 Stone', 'Autominer Power x2.0 | 700 Diamond',
-    'Sell Multiplier x2.0 | 5.0e6 Silver', 'Diamond Base +4 | 2000 Diamond', 'Diamond Max +7 | 3000 Diamond']
+    'Sell Multiplier x2.0 | 5.0e6 Silver', 'Diamond Base +4 | 1000 Diamond', 'Diamond Max +7 | 1000 Diamond',
+    'Sell Multiplier x1.6 | 1 Emerald', 'Diamond Max +25 | 2 Emerald', 'Autominer Power x2.0 | 10 Emerald',
+    'Stone Base +8.0e7 | 4.0e10 Stone', 'Copper Base +5.0e7 | 2.0e9 Copper', '']
 function deepcopy(a, b) {
   for (j = 0; a.length != b.length; j++) {
     b.push(a[j])
@@ -89,11 +95,11 @@ function deepcopy(a, b) {
 }
 pickupglist = [3, 15, 30, 55, 75, 110, 135, 160]
 pickupgprice = ['10 Stone', '20 Copper', '30 Iron', '40 Silver', '60 Gold', '300 Platinum', '1200 Diamond', '3000 Emerald']
-tierupgprice = ['NaN Stone', '3000 Copper', '2000 Iron', '1500 Silver', '1750 Gold', '4000 Platinum', 'Infinity Diamond']
+tierupgprice = ['NaN Stone', '3000 Copper', '2000 Iron', '1500 Silver', '1750 Gold', '4000 Platinum', '1.0e4 Diamond', 'Infinity Emerald']
 picknames = ['Wooden Pickaxe', 'Stone Pickaxe', 'Copper Pickaxe', 'Iron Pickaxe', 'Silver Pickaxe', 'Gold Pickaxe', 'Platinum Pickaxe', 'Diamond Pickaxe']
 pickcolor = ['#742', '#555', '#fb5', '#ccc', '#ddd', '#ee6', '#dda', '#9cf']
-orelist = [stone, copper, iron, silver, gold, platinum]
-orelists = ["Stone", "Copper", "Iron", "Silver", "Gold", "Platinum", "Diamond"]
+orelist = [stone, copper, iron, silver, gold, platinum, diamond, emerald]
+orelists = ["Stone", "Copper", "Iron", "Silver", "Gold", "Platinum", "Diamond", "Emerald", "Ruby"]
 // [type, base, max]
 // [type, percent]
 // type 2 = random base to base+max
@@ -108,10 +114,30 @@ platinumtype = [0, 3, 1, 0]
 diamondtype = [0, 2, 1, 0]
 emeraldtype = [0, 1, 1, 0]
 selectedupgrade = 0
+selectedartifact = 0
 upgradecopied = []
 oreupgradelist = []
 oreupgradeboughtlist = []
 oreupgradecopied = []
 oreupgrades = 0
 cost = 0
-box = [1, 0, 0, 0, 0] // common, uncommon, rare, epic, legendary
+box = [0, 0, 0, 0, 0] // common, uncommon, rare, epic, legendary
+artifactstat = [
+  {id:0, level:0, maxlevel:30, name:"Improved Gear", lore:"Decrease Autominer Interval Limit", rarity:0},
+  {id:1, level:0, maxlevel:20, name:"Broken Necklace", lore:"Critical Mine with a constant Probability", rarity:0},
+  {id:2, level:0, maxlevel:50, name:"Slow Machine", lore:"Increase Cooldown, but you get more ores", rarity:0},
+  {id:3, level:0, maxlevel:15, name:"Automated Clock", lore:"Increase Autominer Power based on Time Played", rarity:1}, 
+  {id:4, level:0, maxlevel:30, name:"Enchanted Ore", lore:"Increase Sell Multiplier based on Mine Count", rarity:1},
+  {id:5, level:0, maxlevel:10, name:"Mechanical Pickaxe", lore:"Mine Automatically(Not Autominer), but Cooldown in longer", rarity:2}
+]
+artifactpage = 0
+debug = true
+// artifacts
+/*
+Improved Gear / Decrease Autominer Interval Limit / MAX LEVEL 30 / Common
+Broken Necklace / Critical Mine with a constant probability / MAX LEVEL 20 / Common
+Slow Machine / Increase Cooldown, but you get more ores / MAX LEVEL 50 / Common
+Automated Clock / Increases Autominer Power based on Time Played / MAX LEVEL 15 / Uncommon
+Enchanted Ore / Increase Sell Multiplier based on Mine Count / MAX LEVEL 30 / Uncommon
+Mechanical Pickaxe / Mine Automatically(Not Autominer), but Cooldown is longer / MAX LEVEL 10 / Rare
+*/

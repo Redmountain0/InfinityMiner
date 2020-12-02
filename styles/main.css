@@ -222,6 +222,12 @@
     color: #222;
     font-size: 2.2vmin
   }
+  .sell:hover {
+    background-color: #909090 !important
+  }
+  .boxopen:hover {
+    background-color: #999 !important
+  }
   #autominerintervalup {
     position: absolute;
     top: 65%; left: 28.3%;
@@ -288,6 +294,13 @@
     top: 2%; left: 50%;
     color: #fb5
   }
+  #commonboxopen {
+    position: absolute;
+    top: 2%; left: 65%;
+    background-color: #909090;
+    color: #222;
+    font-size: 2.2vmin
+  }
   #uncommonbox {
     position: absolute;
     top: 5%; left: 50%;
@@ -307,6 +320,54 @@
     position: absolute;
     top: 14%; left: 50%;
     color: #ee6
+  }
+  #boxselect {
+    position: absolute;
+    background-color: #999;
+    top: 52%; left: 48%;
+    width: 8.6%; height: 4.5%;
+    border-width: 2px;
+  }
+  #artifactselect {
+    position: absolute;
+    background-color: #999;
+    top: 52%; left: 60%;
+    width: 8.6%; height: 4.5%;
+    border-width: 2px;
+  }
+  #artifacts1 {
+    position: absolute;
+    background-color: #a0a0a0;
+    top: 2%; left: 48%;
+    width: 20%; height: 9%
+  }
+  #artifacts2 {
+    position: absolute;
+    background-color: #a0a0a0;
+    top: 13%; left: 48%;
+    width: 20%; height: 9%
+  }
+  #artifacts3 {
+    position: absolute;
+    background-color: #a0a0a0;
+    top: 24%; left: 48%;
+    width: 20%; height: 9%
+  }
+  #artifacts4 {
+    position: absolute;
+    background-color: #a0a0a0;
+    top: 35%; left: 48%;
+    width: 20%; height: 9%;
+  }
+  #artifactsleft {
+    position: absolute;
+    top: 46%; left: 53%;
+    font-size: 3.0vmin
+  }
+  #artifactsright {
+    position: absolute;
+    top: 46%; left: 62%;
+    font-size: 3.0vmin
   }
   @keyframes light {
     0%, 100%{

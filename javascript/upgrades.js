@@ -55,6 +55,15 @@ function buyabletest(num) {
         if (diamondtype[0] == 1) {i = true}
         else {i = false}
       }
+    } else if (upgradelist[num].split("|")[0].split(" ")[0] == "Emerald") {
+      if (upgradelist[num].split("|")[0].split(" ")[1] == "Max" ||
+      upgradelist[num].split("|")[0].split(" ")[1] == "Base") {
+        if (emeraldtype[0] == 2) {i = true}
+        else {i = false}
+      } else {
+        if (emeraldtype[0] == 1) {i = true}
+        else {i = false}
+      }
     } else {
       i = true
     }
@@ -174,6 +183,9 @@ function pickupgrade(num) {
       }
       if (cost == "Diamond") {
         diamond -= oreupgradelist[num].split("|")[1].split(" ")[1]
+      }
+      if (cost == "Emerald") {
+        emerald -= oreupgradelist[num].split("|")[1].split(" ")[1]
       }
       oreupgrades += 1
       oreupgradeboughtlist.push(oreupgradelistr.indexOf(oreupgradelist[num]))
@@ -305,6 +317,27 @@ function upgrade(num, upgradelist) {
         if (upgradelist[num].split("|")[0].split(" ")[1] == "Base") {
           if (diamondtype[0] == 2) {
             diamondtype[2] += Number(upgradelist[num].split("|")[0].split(" ")[2])
+          } else {return 0}
+        }
+      }
+      if (upgradelist[num].split("|")[0].split(" ")[0] == "Emerald") {
+        if (upgradelist[num].split("|")[0].split(" ")[1] == "Chance") {
+          if (emeraldtype[0] == 1) {
+            if (upgradelist[num].split("|")[0].split(" ")[2].length == 4) {
+              emeraldtype[1] += Number(upgradelist[num].split("|")[0].split(" ")[2].substring(1,3))
+            } else {
+              emeraldtype[1] += Number(upgradelist[num].split("|")[0].split(" ")[2].substring(1,2))
+            }
+          } else {return 0}
+        }
+        if (upgradelist[num].split("|")[0].split(" ")[1] == "Max") {
+          if (emeraldtype[0] == 2) {
+            emeraldtype[3] += Number(upgradelist[num].split("|")[0].split(" ")[2])
+          } else {return 0}
+        }
+        if (upgradelist[num].split("|")[0].split(" ")[1] == "Base") {
+          if (emeraldtype[0] == 2) {
+            emeraldtype[2] += Number(upgradelist[num].split("|")[0].split(" ")[2])
           } else {return 0}
         }
       }
