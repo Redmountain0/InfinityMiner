@@ -87,12 +87,13 @@ oreupgradelistr =
     'Stone Base +1.5e7 | 400 Diamond', 'Copper Base +9.0e6 | 5.0e9 Stone', 'Autominer Power x2.0 | 700 Diamond',
     'Sell Multiplier x2.0 | 5.0e6 Silver', 'Diamond Base +4 | 1000 Diamond', 'Diamond Max +7 | 1000 Diamond',
     'Sell Multiplier x1.6 | 1 Emerald', 'Diamond Max +25 | 2 Emerald', 'Autominer Power x2.0 | 10 Emerald',
-    'Stone Base +8.0e7 | 4.0e10 Stone', 'Copper Base +5.0e7 | 2.0e9 Copper', '']
+    'Stone Base +8.0e7 | 4.0e10 Stone', 'Copper Base +5.0e7 | 2.0e9 Copper']
 function deepcopy(a, b) {
-  if (a.length == b.length) {return}
+  if (a.length <= b.length) { return }
   for (j = 0; a.length != b.length; j++) {
     b.push(a[j])
   }
+  console.log(a, b)
 }
 pickupglist = [3, 15, 30, 55, 75, 110, 135, 160]
 pickupgprice = ['10 Stone', '20 Copper', '30 Iron', '40 Silver', '60 Gold', '300 Platinum', '1200 Diamond', '3000 Emerald']
@@ -124,12 +125,12 @@ oreupgrades = 0
 cost = 0
 box = [0, 0, 0, 0, 0] // common, uncommon, rare, epic, legendary
 artifactstat = [
-  {id:0, level:0, maxlevel:30, name:"Improved Gear", lore:"Decrease Autominer Interval Limit", rarity:0},
-  {id:1, level:0, maxlevel:20, name:"Broken Necklace", lore:"Critical Mine with a constant Probability", rarity:0},
-  {id:2, level:0, maxlevel:50, name:"Slow Machine", lore:"Increase Cooldown, but you get more ores", rarity:0},
-  {id:3, level:0, maxlevel:15, name:"Automated Clock", lore:"Increase Autominer Power based on Time Played", rarity:1}, 
-  {id:4, level:0, maxlevel:30, name:"Enchanted Ore", lore:"Increase Sell Multiplier based on Mine Count", rarity:1},
-  {id:5, level:0, maxlevel:10, name:"Mechanical Pickaxe", lore:"Mine Automatically(Not Autominer), but Cooldown in longer", rarity:2}
+  { id: 0, level: 0, maxlevel: 30, name: "Improved Gear", lore: "Decrease Autominer Interval Limit", rarity: 0 },
+  { id: 1, level: 0, maxlevel: 20, name: "Broken Necklace", lore: "Critical Mine with a constant Probability", rarity: 0 },
+  { id: 2, level: 0, maxlevel: 50, name: "Slow Machine", lore: "Increase Cooldown, but you get more ores", rarity: 0 },
+  { id: 3, level: 0, maxlevel: 15, name: "Automated Clock", lore: "Increase Autominer Power based on Time Played", rarity: 1 },
+  { id: 4, level: 0, maxlevel: 30, name: "Enchanted Ore", lore: "Increase Sell Multiplier based on Mine Count", rarity: 1 },
+  { id: 5, level: 0, maxlevel: 10, name: "Mechanical Pickaxe", lore: "Mine Automatically(Not Autominer), but Cooldown in longer", rarity: 2 }
 ]
 artifactpage = 0
 debug = true

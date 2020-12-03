@@ -110,11 +110,6 @@
     background-color: #888;
     transition: 0.2s
   }
-  #pickupgrade1:hover {
-    background-color: #909090;
-    transform: scale(0.97);
-    transition: 0.2s
-  }
   #pickupgrade2 {
     position: absolute;
     top: 49%; left: 1%;
@@ -122,21 +117,21 @@
     background-color: #888;
     transition: 0.2s
   }
-  #pickupgrade2:hover {
+  #pickupgrade1:hover, #pickupgrade2:hover, #pickupgrade3:hover, #pickupgrade4:hover, #pickupgrade5:hover {
     background-color: #909090;
     transform: scale(0.97);
     transition: 0.2s
+  }
+  #pickupgrade1:active, #pickupgrade2:active, #pickupgrade3:active, #pickupgrade4:active, #pickupgrade5:active {
+    background-color: #999;
+    transform: scale(0.95);
+    transition: 0.1s
   }
   #pickupgrade3 {
     position: absolute;
     top: 60%; left: 1%;
     width: 13.5%; height: 9%;
     background-color: #888;
-    transition: 0.2s
-  }
-  #pickupgrade3:hover {
-    background-color: #909090;
-    transform: scale(0.97);
     transition: 0.2s
   }
   #pickupgrade4 {
@@ -146,21 +141,11 @@
     background-color: #888;
     transition: 0.2s
   }
-  #pickupgrade4:hover {
-    background-color: #909090;
-    transform: scale(0.97);
-    transition: 0.2s
-  }
   #pickupgrade5 {
     position: absolute;
     top: 82%; left: 1%;
     width: 13.5%; height: 9%;
     background-color: #888;
-    transition: 0.2s
-  }
-  #pickupgrade5:hover {
-    background-color: #909090;
-    transform: scale(0.97);
     transition: 0.2s
   }
   .pickupgradedetail {
@@ -194,9 +179,16 @@
     font-size: 2.8vmin;
     color: black;
     background-color: #ccc;
+    transition: 0.2s
   }
-  #save:hover {
+  #save:hover, #load:hover, #export:hover, #import:hover, #discord:hover, #reset:hover {
     background-color: #bbb;
+    transform: scale(0.97);
+    transition: 0.2s
+  }
+  #save:active, #load:active, #export:active, #import:active, #discord:active, #reset:active {
+    transform: scale(0.93);
+    transition: 0.1s
   }
   #load {
     position: absolute;
@@ -205,6 +197,7 @@
     font-size: 2.8vmin;
     color: black;
     background-color: #ccc;
+    transition: 0.2s
   }
   #export {
     position: absolute;
@@ -213,6 +206,7 @@
     font-size: 2.8vmin;
     color: black;
     background-color: #ccc;
+    transition: 0.2s
   }
   #import {
     position: absolute;
@@ -221,6 +215,7 @@
     font-size: 2.8vmin;
     color: black;
     background-color: #ccc;
+    transition: 0.2s
   }
   #discord {
     position: absolute;
@@ -229,6 +224,7 @@
     font-size: 2.8vmin;
     color: black;
     background-color: #ccc;
+    transition: 0.2s
   }
   #reset {
     position: absolute;
@@ -237,21 +233,7 @@
     font-size: 2.8vmin;
     color: black;
     background-color: #ccc;
-  }
-  #load:hover {
-    background-color: #bbb;
-  }
-  #export:hover {
-    background-color: #bbb;
-  }
-  #import:hover {
-    background-color: #bbb;
-  }
-  #reset:hover {
-    background-color: #bbb;
-  }
-  #discord:hover {
-    background-color: #bbb;
+    transition: 0.2s
   }
   #autominerselected {
     position: absolute;
@@ -284,6 +266,7 @@
     font-size: 2.2vmin;
     background-color: #777;
     color: #bbb;
+    transition: 0.2s
   }
   #autominertierup {
     position: absolute;
@@ -292,6 +275,7 @@
     font-size: 2.2vmin;
     background-color: #777;
     color: #bbb;
+    transition: 0.2s
   }
   #autominerpowerup {
     position: absolute;
@@ -300,18 +284,42 @@
     font-size: 2.2vmin;
     background-color: #777;
     color: #bbb;
+    transition: 0.2s
+  }
+  #autominerintervalup:hover, #autominertierup:hover, #autominerpowerup:hover {
+    transform: scale(0.97);
+    transition: 0.2s
+  }
+  #autominerintervalup:active, #autominertierup:active, #autominerpowerup:active {
+    transform: scale(0.95);
+    background-color: #7c7c7c;
+    transition: 0.1s
   }
   #autominerselectleft {
     position: absolute;
     top: 70%; left: 18%;
     font-size: 20px;
     background-color: #888;
+    transition: 0.2s;
+    color: #333
   }
   #autominerselectright {
     position: absolute;
     top: 70%; left: 23%;
     font-size: 20px;
     background-color: #888;
+    transition: 0.2s;
+    color: #333
+  }
+  #autominerselectleft:hover, #autominerselectright:hover {
+    color: #000;
+    transform: scale(1.1);
+    transition: 0.2s
+  }
+  #autominerselectleft:active, #autominerselectright:active {
+    color: #000;
+    transform: scale(1.2);
+    transition: 0.1s
   }
   #coinupgrade {
     position: absolute;
@@ -319,7 +327,8 @@
     width: 7.6%; height: 4.5%;
     background-color: #999;
     border-width: 2px;
-    border-color: #555
+    border-color: #555;
+    transition: 0.2s
   }
   #oreupgrade {
     position: absolute;
@@ -327,7 +336,17 @@
     width: 7.6%; height: 4.5%;
     background-color: #999;
     border-width: 2px;
-    border-color: #555
+    border-color: #555;
+    transition: 0.2s
+  }
+  #coinupgrade:hover, #oreupgrade:hover {
+    transform: scale(0.97);
+    transition: 0.2s
+  }
+  #coinupgrade:active, #oreupgrade:active {
+    transform: scale(0.95);
+    background-color: #aaa;
+    transition: 0.2s
   }
   #artifactlocked {
     position: absolute;
@@ -373,6 +392,7 @@
     top: 52%; left: 48%;
     width: 8.6%; height: 4.5%;
     border-width: 2px;
+    transition: 0.2s
   }
   #artifactselect {
     position: absolute;
@@ -380,40 +400,72 @@
     top: 52%; left: 60%;
     width: 8.6%; height: 4.5%;
     border-width: 2px;
+    transition: 0.2s
+  }
+  #boxselect:hover, #artifactselect:hover {
+    transform: scale(0.97);
+    transition: 0.2s
+  }
+  #boxselect:active, #artifactselect:active {
+    transform: scale(0.95);
+    background-color: #a5a5a5;
+    transition: 0.1s
   }
   #artifacts1 {
     position: absolute;
     background-color: #a0a0a0;
     top: 2%; left: 48%;
-    width: 20%; height: 9%
+    width: 20%; height: 9%;
+    transition: 0.2s
   }
   #artifacts2 {
     position: absolute;
     background-color: #a0a0a0;
     top: 13%; left: 48%;
-    width: 20%; height: 9%
+    width: 20%; height: 9%;
+    transition: 0.2s
   }
   #artifacts3 {
     position: absolute;
     background-color: #a0a0a0;
     top: 24%; left: 48%;
-    width: 20%; height: 9%
+    width: 20%; height: 9%;
+    transition: 0.2s
   }
   #artifacts4 {
     position: absolute;
     background-color: #a0a0a0;
     top: 35%; left: 48%;
     width: 20%; height: 9%;
+    transition: 0.2s
   }
   #artifactsleft {
     position: absolute;
     top: 46%; left: 53%;
-    font-size: 3.0vmin
+    font-size: 3.0vmin;
+    color: #333;
+    background-color: #909090;
   }
   #artifactsright {
     position: absolute;
     top: 46%; left: 62%;
-    font-size: 3.0vmin
+    font-size: 3.0vmin;
+    color: #333;
+    background-color: #909090;
+  }
+  #artifacts1:hover, #artifacts2:hover, #artifacts3:hover, #artifacts4:hover {
+    transform: scale(1.02);
+    transition: 0.2s
+  }
+  #artifactsright:hover, #artifactsleft:hover {
+    color: #000;
+    transform: scale(1.1);
+    transition: 0.2s
+  }
+  #artifactsright:active, #artifactsleft:active {
+    color: #000;
+    transform: scale(1.2);
+    transition: 0.1s
   }
   @keyframes light {
     0%, 100%{

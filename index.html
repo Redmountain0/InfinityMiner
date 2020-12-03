@@ -1,425 +1,449 @@
 <html>
-  <title>Infinity Miner</title>
-  <link rel="stylesheet" href="styles/main.css"></link>
-  <link rel="stylesheet" href="styles/ore.css"></link>
-  <body> 
-    <div id="container1"></div>
-    <div id="container2"></div>
-    <div id="container3"></div>
-    <div id="container4"></div>
-    <div id="container5"></div>
-      <button id="mine" type="button" onclick="mine()">Mine</button>
-      <div id="cooldown">cooldown: 5.0s</div>
-      <div id="coin">0 Coin</div>
-      <div id="crystal">0 Crystal</div>
-    <div id="ore">
-      <div id="stone">Stone x0</div><button id="stonesell1" class="sell" type="button" onclick="stonesell1()">sell x1</button>
-      <button id="stonesellmax" type="button" class="sell" onclick="stonesellmax()">sell max</button>
-      <div id="copper">Copper x0</div><button id="coppersell1" class="sell" type="button" onclick="coppersell1()">sell x1</button>
-      <button id="coppersellmax" type="button" class="sell" onclick="coppersellmax()">sell max</button>
-      <div id="iron">Iron x0</div><button id="ironsell1" class="sell" type="button" onclick="ironsell1()">sell x1</button>
-      <button id="ironsellmax" type="button" class="sell" onclick="ironsellmax()">sell max</button>
-      <div id="silver">Silver x0</div><button id="silversell1" class="sell" type="button" onclick="silversell1()">sell x1</button>
-      <button id="silversellmax" type="button" class="sell" onclick="silversellmax()">sell max</button>
-      <div id="gold">Gold x0</div><button id="goldsell1" class="sell" type="button" onclick="goldsell1()">sell x1</button>
-      <button id="goldsellmax" type="button" class="sell" onclick="goldsellmax()">sell max</button>
-      <div id="platinum">Platinum x0</div><button id="platinumsell1" class="sell" type="button" onclick="platinumsell1()">sell x1</button>
-      <button id="platinumsellmax" type="button" class="sell" onclick="platinumsellmax()">sell max</button>
-      <div id="diamond">Diamond x0</div><button id="diamondsell1" class="sell" type="button" onclick="diamondsell1()">sell x1</button>
-      <button id="diamondsellmax" type="button" class="sell" onclick="diamondsellmax()">sell max</button>
-      <div id="emerald">Emerald x0</div><button id="emeraldsell1" class="sell" type="button" onclick="emeraldsell1()">sell x1</button>
-      <button id="emeraldsellmax" type="button" class="sell" onclick="emeraldsellmax()">sell max</button>
-      <div id="ruby">Ruby x0</div>
-      <div id="sapphire">Sapphire x0</div>
-      <div id="topaz">Topaz x0</div>
-      <div id="obsidian">Obsidian x0</div>
-    </div>
-    <div id="pick">
-      <div id="curpicklv">Wooden Pickaxe</div>
-      <div id="picklvup" onclick="test()">Level up [ 0 / 2 Upgrades ]</div>
-      <div id="stonepermine">1 ~ 2</div>
-      <div id="pickupgrades">
-        <div id="pickupgrade1" onclick="pickupgrade(0)">
-          <div id="pickupgrade1detail" class="pickupgradedetail"></div>
-          <div id="pickupgrade1price" class="pickupgradeprice"></div>
-        </div>
-        <div id="pickupgrade2" onclick="pickupgrade(1)">
-          <div id="pickupgrade2detail" class="pickupgradedetail"></div>
-          <div id="pickupgrade2price" class="pickupgradeprice"></div>
-        </div>
-        <div id="pickupgrade3" onclick="pickupgrade(2)">
-          <div id="pickupgrade3detail" class="pickupgradedetail"></div>
-          <div id="pickupgrade3price" class="pickupgradeprice"></div>
-        </div>
-        <div id="pickupgrade4" onclick="pickupgrade(3)">
-          <div id="pickupgrade4detail" class="pickupgradedetail"></div>
-          <div id="pickupgrade4price" class="pickupgradeprice"></div>
-        </div>
-        <div id="pickupgrade5" onclick="pickupgrade(4)">
-          <div id="pickupgrade5detail" class="pickupgradedetail"></div>
-          <div id="pickupgrade5price" class="pickupgradeprice"></div>
-        </div>
-      </div>
-      <button id="coinupgrade" onclick="upgradeselect(0)">Coin</button>
-      <button id="oreupgrade" onclick="upgradeselect(1)">Ore</button>
-    </div>
-    <div id="autominer">
-      <div>
-        <button id="autominerlocked" onclick="unlock()">Unlock Autominer<br>200 Iron</button>
-      </div>
-      <div>
-        <div id="autominerselected" class="autominer">stone</div>   
-        <button id="autominertierup" class="autominer" onclick="tierup()"></button>
-        <button id="autominerintervalup" class="autominer" onclick="intervalup()"></button>
-        <button id="autominerpowerup" class="autominer" onclick="powerup()"></button>
-        <button id="autominerselectleft" class="autominer" onclick="select(-1)">◀</button>
-        <button id="autominerselectright" class="autominer" onclick="select(1)">▶</button>
-      </div>
-    </div>
-    <div id="setting">
-      <button id="save" onclick="save()">Save</button>
-      <button id="load" onclick="load()">Load</button>
-      <button id="export" onclick="exportdata()">Export</button>
-      <button id="import" onclick="importdata()">Import</button>
-      <button id="discord" onclick="window.open(`https://discord.gg/mcUPN5w`, `_blank`);">Discord</button>
-      <button id="reset" onclick="reset()">Reset</button>
-      <input type="text" id="selected" style="display: none"></input>
-    </div>
-    <div id="artifact">
-      <div>
-        <button id="artifactlocked" onclick="unlockartifact()">Unlock Artifact<br>5 Emerald</button>
-      </div>
-      <div id="commonbox" class="artifact box">Common Box x0</div><button id="commonboxopen" class="artifact box boxopen" onclick="openbox(0)">Open</button>
-      <div id="uncommonbox" class="artifact box">Uncommon Box x0</div>
-      <div id="rarebox" class="artifact box">Rare Box x0</div>
-      <div id="epicbox" class="artifact box">Epic Box x0</div>
-      <div id="legendbox" class="artifact box">Legendary Box x0</div>
-      <div id="artifactlist1" class="artifact artifacts"></div>
-      <button id="boxselect" class="artifact" onclick="artifactselect(0)">Box</button>
-      <button id="artifactselect" class="artifact" onclick="artifactselect(1)">Artifact</button>
-      <div id="artifacts1" class="artifact artifacts">
-        <span id="AFname1" style="color: #555; text-shadow: 0px 0px 10px #666">Improved Gear</span>
-        <span id="AFrarity1" style="color: #fb5; text-shadow: 0px 0px 10px #c95">[common]</span>
-        <div id="AFlevel1" style="color: #ddd; text-shadow: 0px 0px 10px #ddd; font-size: 2.1vmin">Lv. 0 / 30</div>
-        <div id="AFdesc1" style="font-size: 1.9vmin; color: #444">Decrease Autominer Interval Limit</div>
-      </div>
-      <div id="artifacts2" class="artifact artifacts">
-        <span id="AFname2" style="color: #555; text-shadow: 0px 0px 10px #666">Improved Gear</span>
-        <span id="AFrarity2" style="color: #fb5; text-shadow: 0px 0px 10px #c95">[common]</span>
-        <div id="AFlevel2" style="color: #ddd; text-shadow: 0px 0px 10px #ddd; font-size: 2.1vmin">Lv. 0 / 30</div>
-        <div id="AFdesc2" style="font-size: 1.9vmin; color: #444">Decrease Autominer Interval Limit</div>
-      </div>
-      <div id="artifacts3" class="artifact artifacts">
-        <span id="AFname3" style="color: #555; text-shadow: 0px 0px 10px #666">Improved Gear</span>
-        <span id="AFrarity3" style="color: #fb5; text-shadow: 0px 0px 10px #c95">[common]</span>
-        <div id="AFlevel3" style="color: #ddd; text-shadow: 0px 0px 10px #ddd; font-size: 2.1vmin">Lv. 0 / 30</div>
-        <div id="AFdesc3" style="font-size: 1.9vmin; color: #444">Decrease Autominer Interval Limit</div>
-      </div>
-      <div id="artifacts4" class="artifact artifacts">
-        <span id="AFname4" style="color: #555; text-shadow: 0px 0px 10px #666">Improved Gear</span>
-        <span id="AFrarity4" style="color: #fb5; text-shadow: 0px 0px 10px #c95">[common]</span>
-        <div id="AFlevel4" style="color: #ddd; text-shadow: 0px 0px 10px #ddd; font-size: 2.1vmin">Lv. 0 / 30</div>
-        <div id="AFdesc4" style="font-size: 1.9vmin; color: #444">Decrease Autominer Interval Limit</div>
-      </div>
-      <button id="artifactsleft" class="artifact artifacts" onclick="artifacttab(-1)">◀</button>
-      <button id="artifactsright" class="artifact artifacts" onclick="artifacttab(1)">▶</button>
+<title>Infinity Miner</title>
+<link rel="stylesheet" href="styles/main.css">
+</link>
+<link rel="stylesheet" href="styles/ore.css">
+</link>
 
+<body>
+  <div id="container1"></div>
+  <div id="container2"></div>
+  <div id="container3"></div>
+  <div id="container4"></div>
+  <div id="container5"></div>
+  <button id="mine" type="button" onclick="mine()">Mine</button>
+  <div id="cooldown">cooldown: 5.0s</div>
+  <div id="coin">0 Coin</div>
+  <div id="crystal">0 Crystal</div>
+  <div id="ore">
+    <div id="stone">Stone x0</div><button id="stonesell1" class="sell" type="button" onclick="stonesell1()">sell
+      x1</button>
+    <button id="stonesellmax" type="button" class="sell" onclick="stonesellmax()">sell max</button>
+    <div id="copper">Copper x0</div><button id="coppersell1" class="sell" type="button" onclick="coppersell1()">sell
+      x1</button>
+    <button id="coppersellmax" type="button" class="sell" onclick="coppersellmax()">sell max</button>
+    <div id="iron">Iron x0</div><button id="ironsell1" class="sell" type="button" onclick="ironsell1()">sell x1</button>
+    <button id="ironsellmax" type="button" class="sell" onclick="ironsellmax()">sell max</button>
+    <div id="silver">Silver x0</div><button id="silversell1" class="sell" type="button" onclick="silversell1()">sell
+      x1</button>
+    <button id="silversellmax" type="button" class="sell" onclick="silversellmax()">sell max</button>
+    <div id="gold">Gold x0</div><button id="goldsell1" class="sell" type="button" onclick="goldsell1()">sell x1</button>
+    <button id="goldsellmax" type="button" class="sell" onclick="goldsellmax()">sell max</button>
+    <div id="platinum">Platinum x0</div><button id="platinumsell1" class="sell" type="button"
+      onclick="platinumsell1()">sell x1</button>
+    <button id="platinumsellmax" type="button" class="sell" onclick="platinumsellmax()">sell max</button>
+    <div id="diamond">Diamond x0</div><button id="diamondsell1" class="sell" type="button" onclick="diamondsell1()">sell
+      x1</button>
+    <button id="diamondsellmax" type="button" class="sell" onclick="diamondsellmax()">sell max</button>
+    <div id="emerald">Emerald x0</div><button id="emeraldsell1" class="sell" type="button" onclick="emeraldsell1()">sell
+      x1</button>
+    <button id="emeraldsellmax" type="button" class="sell" onclick="emeraldsellmax()">sell max</button>
+    <div id="ruby">Ruby x0</div>
+    <div id="sapphire">Sapphire x0</div>
+    <div id="topaz">Topaz x0</div>
+    <div id="obsidian">Obsidian x0</div>
+  </div>
+  <div id="pick">
+    <div id="curpicklv">Wooden Pickaxe</div>
+    <div id="picklvup" onclick="test()">Level up [ 0 / 2 Upgrades ]</div>
+    <div id="stonepermine">1 ~ 2</div>
+    <div id="pickupgrades">
+      <div id="pickupgrade1" onclick="pickupgrade(0)">
+        <div id="pickupgrade1detail" class="pickupgradedetail"></div>
+        <div id="pickupgrade1price" class="pickupgradeprice"></div>
+      </div>
+      <div id="pickupgrade2" onclick="pickupgrade(1)">
+        <div id="pickupgrade2detail" class="pickupgradedetail"></div>
+        <div id="pickupgrade2price" class="pickupgradeprice"></div>
+      </div>
+      <div id="pickupgrade3" onclick="pickupgrade(2)">
+        <div id="pickupgrade3detail" class="pickupgradedetail"></div>
+        <div id="pickupgrade3price" class="pickupgradeprice"></div>
+      </div>
+      <div id="pickupgrade4" onclick="pickupgrade(3)">
+        <div id="pickupgrade4detail" class="pickupgradedetail"></div>
+        <div id="pickupgrade4price" class="pickupgradeprice"></div>
+      </div>
+      <div id="pickupgrade5" onclick="pickupgrade(4)">
+        <div id="pickupgrade5detail" class="pickupgradedetail"></div>
+        <div id="pickupgrade5price" class="pickupgradeprice"></div>
+      </div>
     </div>
-    <div id="debug">
-      <div class="debug" id="Stonegain" style="position: absolute; top: 2.5%; left: 39%; font-size: 1.6vmin">1 - 2</div>
-      <div class="debug" id="Coppergain" style="position: absolute; top: 5.5%; left: 39%; font-size: 1.6vmin">1 - 2</div>
-      <div class="debug" id="Irongain" style="position: absolute; top: 8.5%; left: 39%; font-size: 1.6vmin">1 - 2</div>
-      <div class="debug" id="Silvergain" style="position: absolute; top: 11.5%; left: 39%; font-size: 1.6vmin">1 - 2</div>
-      <div class="debug" id="Goldgain" style="position: absolute; top: 14.5%; left: 39%; font-size: 1.6vmin">1 - 2</div>
-      <div class="debug" id="Platinumgain" style="position: absolute; top: 17.5%; left: 39%; font-size: 1.6vmin">1 - 2</div>
-      <div class="debug" id="Diamondgain" style="position: absolute; top: 20.5%; left: 39%; font-size: 1.6vmin">1 - 2</div>
-      <div class="debug" id="Emeraldgain" style="position: absolute; top: 23.5%; left: 39%; font-size: 1.6vmin">1 - 2</div>
-      <div class="debug" id="autominergaintick" style="position: absolute; top: 61%; left: 20%; font-size: 1.6vmin">10 Stone / tick</div>
-      <div class="debug" id="autominergainsec" style="position: absolute; top: 63%; left: 20%; font-size: 1.6vmin">10 Stone / second</div>
+    <button id="coinupgrade" onclick="upgradeselect(0)">Coin</button>
+    <button id="oreupgrade" onclick="upgradeselect(1)">Ore</button>
+  </div>
+  <div id="autominer">
+    <div>
+      <button id="autominerlocked" onclick="unlock()">Unlock Autominer<br>200 Iron</button>
     </div>
-    
-    <script src="javascript/variables.js"></script>
-    <script src="javascript/upgrades.js"></script>
-    <script>
-      window.addEventListener("keydown", (e) => {
-        if (e.key == "F4") {
-          if (debug == false) {debug = true}
-          else {debug = false}
-        }
-      })
-      function reset() {
-        a = confirm("정말로 리셋하시겠습니까?"); 
-        if (a) {localStorage.clear(); load()}
-      }
-      function upgradeselect(number) {
-        selectedupgrade = number
-      } 
-      function artifactselect(number) {
-        selectedartifact = number
-      } 
-      function exportdata() {
-        obj = document.getElementById("selected");
-        obj.style.display = 'block'
-        obj.value = btoa(JSON.stringify(localStorage));
-        obj.select();
-        document.execCommand("copy");
-        obj.setSelectionRange(0, 0);
-        obj.style.display = 'none'
-      }
-      function importdata() {
-        imp = prompt()
-        importjson = JSON.parse(atob(imp))
-        localStorage.clear()
-        for (i in importjson) {
-          localStorage.setItem(i, importjson[i])
-        }
-        load()
-      }
-      function unlock() {
-        if (autominerunlock == false && iron >= 200) {
-          iron -= 200
-          autominerunlock = true
-        }
-      }
-      function tierup() {
-        if (orelist[autominertier] >= tierupgprice[autominertier].split(" ")[0]) {
-          if (autominertier == 1) {
-            copper -= 3000
-          }
-          if (autominertier == 2) {
-            iron -= 2000
-          }
-          if (autominertier == 3) {
-            silver -= 1500
-          }
-          if (autominertier == 4) {
-            gold -= 1750
-          }
-          if (autominertier == 5) {
-            platinum -= 4000
-          }
-          if (autominertier == 6) {
-            diamond -= 10000
-          }
-          autominertier++
-        }
-      }
-      function intervalup() {
-        if (iron >= Math.floor(300 * ((1.2 * (1.011 ** intervalupgs)) ** intervalupgs)) && 
-        3000 * (0.9 ** intervalupgs) > 50) {
-          iron -= Math.floor(300 * ((1.2 * (1.011 ** intervalupgs)) ** intervalupgs))
-          intervalupgs++
-        }
-      }
-      function powerup() {
-        if (copper >= Math.floor(1000 * ((1.15 * (1.005 ** powerupgs)) ** powerupgs))) {
-          copper -= Math.floor(1000 * ((1.15 * (1.005 ** powerupgs)) ** powerupgs))
-          powerupgs++
-        }
-      }
-      function save() {
-        localStorage.upgradebought = JSON.stringify(upgradeboughtlist)
-        localStorage.oreupgradebought = JSON.stringify(oreupgradeboughtlist)
-        localStorage.stone = stone
-        localStorage.copper = copper
-        localStorage.iron = iron
-        localStorage.silver = silver
-        localStorage.gold = gold
-        localStorage.platinum = platinum
-        localStorage.diamond = diamond
-        localStorage.emerald = emerald
-        localStorage.coin = coin
-        localStorage.picklevel = picklevel
-        localStorage.autominerunlock = Number(autominerunlock)
-        localStorage.artifactunlock = Number(artifactunlock)
-        localStorage.autominertier = autominertier
-        localStorage.intervalupgs = intervalupgs
-        localStorage.powerupgs = powerupgs
-        localStorage.minecount = minecount
-        localStorage.playtime = playtime
-        localStorage.box = JSON.stringify(box)
-        localStorage.artifacts = JSON.stringify(artifactstat)
-      }
-      function load() {
-        upgradeboughtlist = JSON.parse(localStorage.upgradebought || "[]")
-        oreupgradeboughtlist = JSON.parse(localStorage.oreupgradebought || "[]")
-        sellmult = Number(localStorage.sellmult || 1)
-        picklevel = Number(localStorage.picklevel || 0)
-        autominertier = Number(localStorage.autominertier || 1)
-        autominerpowermult = Number(localStorage.autominerpowermult || 1)
-        intervalupgs = Number(localStorage.intervalupgs || 0)
-        powerupgs = Number(localStorage.powerupgs || 0)
-        artifactstat = JSON.parse(localStorage.artifacts || `[{"id":0,"level":0,"maxlevel":30,"name":"Improved Gear","lore":"Decrease Autominer Interval Limit","rarity":0},{"id":1,"level":0,"maxlevel":20,"name":"Broken Necklace","lore":"Critical Mine with a constant Probability","rarity":0},{"id":2,"level":0,"maxlevel":50,"name":"Slow Machine","lore":"Increase Cooldown, but you get more ores","rarity":0},{"id":3,"level":0,"maxlevel":15,"name":"Automated Clock","lore":"Increase Autominer Power based on Time Played","rarity":1},{"id":4,"level":0,"maxlevel":30,"name":"Enchanted Ore","lore":"Increase Sell Multiplier based on Mine Count","rarity":1},{"id":5,"level":0,"maxlevel":10,"name":"Mechanical Pickaxe","lore":"Mine Automatically(Not Autominer), but Cooldown in longer","rarity":2}]`)
-        box = JSON.parse(localStorage.box || "[0, 0, 0, 0, 0]")
-        playtime = Number(localStorage.playtime || 0)
-        minecount = Number(localStorage.minecount || 0)
-        autominerunlock = Boolean(Number(localStorage.autominerunlock) || 0)
-        artifactunlock = Boolean(Number(localStorage.artifactunlock) || 0)
-        /*
-        stonetype = [2, 100, 1, 1]
-        coppertype = [0, 50, 1, 0]
-        irontype = [0, 30, 1, 0]
-        silvertype = [0, 10, 1, 0]
-        goldtype = [0, 5, 1, 0]
-        platinumtype = [0, 3, 1, 0]
-        diamondtype = [0, 2, 1, 0]
-        emeraldtype = [0, 1, 1, 0]
-        */
+    <div>
+      <div id="autominerselected" class="autominer">stone</div>
+      <button id="autominertierup" class="autominer" onclick="tierup()"></button>
+      <button id="autominerintervalup" class="autominer" onclick="intervalup()"></button>
+      <button id="autominerpowerup" class="autominer" onclick="powerup()"></button>
+      <button id="autominerselectleft" class="autominer" onclick="select(-1)">◀</button>
+      <button id="autominerselectright" class="autominer" onclick="select(1)">▶</button>
+    </div>
+  </div>
+  <div id="setting">
+    <button id="save" onclick="save()">Save</button>
+    <button id="load" onclick="load()">Load</button>
+    <button id="export" onclick="exportdata()">Export</button>
+    <button id="import" onclick="importdata()">Import</button>
+    <button id="discord" onclick="window.open(`https://discord.gg/mcUPN5w`, `_blank`);">Discord</button>
+    <button id="reset" onclick="reset()">Reset</button>
+    <input type="text" id="selected" style="display: none"></input>
+  </div>
+  <div id="artifact">
+    <div>
+      <button id="artifactlocked" onclick="unlockartifact()">Unlock Artifact<br>5 Emerald</button>
+    </div>
+    <div id="commonbox" class="artifact box">Common Box x0</div><button id="commonboxopen" class="artifact box boxopen"
+      onclick="openbox(0)">Open</button>
+    <div id="uncommonbox" class="artifact box">Uncommon Box x0</div>
+    <div id="rarebox" class="artifact box">Rare Box x0</div>
+    <div id="epicbox" class="artifact box">Epic Box x0</div>
+    <div id="legendbox" class="artifact box">Legendary Box x0</div>
+    <div id="artifactlist1" class="artifact artifacts"></div>
+    <button id="boxselect" class="artifact" onclick="artifactselect(0)">Box</button>
+    <button id="artifactselect" class="artifact" onclick="artifactselect(1)">Artifact</button>
+    <div id="artifacts1" class="artifact artifacts">
+      <span id="AFname1" style="color: #555; text-shadow: 0px 0px 10px #666">Improved Gear</span>
+      <span id="AFrarity1" style="color: #fb5; text-shadow: 0px 0px 10px #c95">[common]</span>
+      <div id="AFlevel1" style="color: #ddd; text-shadow: 0px 0px 10px #ddd; font-size: 2.1vmin">Lv. 0 / 30</div>
+      <div id="AFdesc1" style="font-size: 1.9vmin; color: #444">Decrease Autominer Interval Limit</div>
+    </div>
+    <div id="artifacts2" class="artifact artifacts">
+      <span id="AFname2" style="color: #555; text-shadow: 0px 0px 10px #666">Improved Gear</span>
+      <span id="AFrarity2" style="color: #fb5; text-shadow: 0px 0px 10px #c95">[common]</span>
+      <div id="AFlevel2" style="color: #ddd; text-shadow: 0px 0px 10px #ddd; font-size: 2.1vmin">Lv. 0 / 30</div>
+      <div id="AFdesc2" style="font-size: 1.9vmin; color: #444">Decrease Autominer Interval Limit</div>
+    </div>
+    <div id="artifacts3" class="artifact artifacts">
+      <span id="AFname3" style="color: #555; text-shadow: 0px 0px 10px #666">Improved Gear</span>
+      <span id="AFrarity3" style="color: #fb5; text-shadow: 0px 0px 10px #c95">[common]</span>
+      <div id="AFlevel3" style="color: #ddd; text-shadow: 0px 0px 10px #ddd; font-size: 2.1vmin">Lv. 0 / 30</div>
+      <div id="AFdesc3" style="font-size: 1.9vmin; color: #444">Decrease Autominer Interval Limit</div>
+    </div>
+    <div id="artifacts4" class="artifact artifacts">
+      <span id="AFname4" style="color: #555; text-shadow: 0px 0px 10px #666">Improved Gear</span>
+      <span id="AFrarity4" style="color: #fb5; text-shadow: 0px 0px 10px #c95">[common]</span>
+      <div id="AFlevel4" style="color: #ddd; text-shadow: 0px 0px 10px #ddd; font-size: 2.1vmin">Lv. 0 / 30</div>
+      <div id="AFdesc4" style="font-size: 1.9vmin; color: #444">Decrease Autominer Interval Limit</div>
+    </div>
+    <button id="artifactsleft" class="artifact artifacts" onclick="artifacttab(-1)">◀</button>
+    <button id="artifactsright" class="artifact artifacts" onclick="artifacttab(1)">▶</button>
 
-        // upgrade load
-        upgradecopied = []
-        upgradelist = []
-        upgradeboughtlist2 = []
-        oreupgradeboughtlist2 = []
-        deepcopy(upgradelistr, upgradelist)
-        deepcopy(oreupgradelistr, oreupgradelist)
-        deepcopy(upgradeboughtlist, upgradecopied)
-        deepcopy(oreupgradeboughtlist, oreupgradecopied)
-        upgradecopied.sort(function(a, b) {
-        return a - b;
-        })
-        oreupgradecopied.sort(function(a, b) {
-        return a - b;
-        })
-        for (i=0; i<upgradecopied.length; i++) {
-          upgradeboughtlist2.push(upgradecopied[i] - i)
-        }
-        for (i=0; i<oreupgradecopied.length; i++) {
-          oreupgradeboughtlist2.push(oreupgradecopied[i] - i)
-        }
-        coin = 1e308
-        stone = 1e308, copper = 1e308, iron = 1e308, silver = 1e308, gold = 1e308, platinum = 1e308, diamond = 1e308, emerald = 1e308
-        selectedupgrade = 0
-        for (i=0; i<upgradeboughtlist2.length; i++) {
-          pickupgradev2(upgradeboughtlist2[i])
-        }
-        selectedupgrade = 1
-        for (i=0; i<oreupgradeboughtlist2.length; i++) {
-          pickupgradev2(oreupgradeboughtlist2[i])
-        }
-        selectedupgrade = 0
-        stone = Number(localStorage.stone || 0)
-        copper = Number(localStorage.copper || 0)
-        iron = Number(localStorage.iron || 0)
-        silver = Number(localStorage.silver || 0)
-        gold = Number(localStorage.gold || 0)
-        platinum = Number(localStorage.platinum || 0)
-        diamond = Number(localStorage.diamond || 0)
-        emerald = Number(localStorage.emerald || 0)
-        coin = Number(localStorage.coin || 0)
+  </div>
+  <div id="debug">
+    <div class="debug" id="Stonegain" style="position: absolute; top: 2.5%; left: 39%; font-size: 1.6vmin">1 - 2</div>
+    <div class="debug" id="Coppergain" style="position: absolute; top: 5.5%; left: 39%; font-size: 1.6vmin">1 - 2</div>
+    <div class="debug" id="Irongain" style="position: absolute; top: 8.5%; left: 39%; font-size: 1.6vmin">1 - 2</div>
+    <div class="debug" id="Silvergain" style="position: absolute; top: 11.5%; left: 39%; font-size: 1.6vmin">1 - 2</div>
+    <div class="debug" id="Goldgain" style="position: absolute; top: 14.5%; left: 39%; font-size: 1.6vmin">1 - 2</div>
+    <div class="debug" id="Platinumgain" style="position: absolute; top: 17.5%; left: 39%; font-size: 1.6vmin">1 - 2
+    </div>
+    <div class="debug" id="Diamondgain" style="position: absolute; top: 20.5%; left: 39%; font-size: 1.6vmin">1 - 2
+    </div>
+    <div class="debug" id="Emeraldgain" style="position: absolute; top: 23.5%; left: 39%; font-size: 1.6vmin">1 - 2
+    </div>
+    <div class="debug" id="autominergaintick" style="position: absolute; top: 61%; left: 20%; font-size: 1.6vmin">10
+      Stone / tick</div>
+    <div class="debug" id="autominergainsec" style="position: absolute; top: 63%; left: 20%; font-size: 1.6vmin">10
+      Stone / second</div>
+  </div>
 
-        if (picklevel >= 0) {
-            coppertype[0] = 1
-          }
-          if (picklevel >= 1) {
-            irontype[0] = 1
-          }
-          if (picklevel >= 2) {
-            silvertype[0] = 1
-          }
-          if (picklevel >= 3) {
-            goldtype[0] = 1
-          }
-          if (picklevel >= 4) {
-            platinumtype[0] = 1
-          }
-          if (picklevel >= 5) {
-            diamondtype[0] = 1
-          }
-          if (picklevel >= 6) {
-            emeraldtype[0] = 1
-          }
-        upgradelist.push('Unknown | Infinity Coin')
-        upgradelist.push('Unknown | Infinity Coin')
-        upgradelist.push('Unknown | Infinity Coin')
-        upgradelist.push('Unknown | Infinity Coin')
-        upgradelist.push('Unknown | Infinity Coin')
-        oreupgradelist.push('Unknown | Infinity Ore')
-        oreupgradelist.push('Unknown | Infinity Ore')
-        oreupgradelist.push('Unknown | Infinity Ore')
-        oreupgradelist.push('Unknown | Infinity Ore')
-        oreupgradelist.push('Unknown | Infinity Ore') 
+  <script src="javascript/variables.js"></script>
+  <script src="javascript/upgrades.js"></script>
+  <script>
+    window.addEventListener("keydown", (e) => {
+      if (e.key == "F4") {
+        if (debug == false) { debug = true }
+        else { debug = false }
+      }
+    })
+    function reset() {
+      a = confirm("정말로 리셋하시겠습니까?");
+      if (a) { localStorage.clear(); load() }
+    }
+    function upgradeselect(number) {
+      selectedupgrade = number
+    }
+    function artifactselect(number) {
+      selectedartifact = number
+    }
+    function exportdata() {
+      obj = document.getElementById("selected");
+      obj.style.display = 'block'
+      obj.value = btoa(JSON.stringify(localStorage));
+      obj.select();
+      document.execCommand("copy");
+      obj.setSelectionRange(0, 0);
+      obj.style.display = 'none'
+    }
+    function importdata() {
+      imp = prompt()
+      importjson = JSON.parse(atob(imp))
+      localStorage.clear()
+      for (i in importjson) {
+        localStorage.setItem(i, importjson[i])
       }
       load()
-      function isCommon(element) {
-        if(element.rarity === 0)  {
-          return true;
+    }
+    function unlock() {
+      if (autominerunlock == false && iron >= 200) {
+        iron -= 200
+        autominerunlock = true
+      }
+    }
+    function tierup() {
+      if (orelist[autominertier] >= tierupgprice[autominertier].split(" ")[0]) {
+        if (autominertier == 1) {
+          copper -= 3000
+        }
+        if (autominertier == 2) {
+          iron -= 2000
+        }
+        if (autominertier == 3) {
+          silver -= 1500
+        }
+        if (autominertier == 4) {
+          gold -= 1750
+        }
+        if (autominertier == 5) {
+          platinum -= 4000
+        }
+        if (autominertier == 6) {
+          diamond -= 10000
+        }
+        autominertier++
+      }
+    }
+    function intervalup() {
+      if (iron >= Math.floor(300 * ((1.2 * (1.011 ** intervalupgs)) ** intervalupgs)) &&
+        3000 * (0.9 ** intervalupgs) > 50) {
+        iron -= Math.floor(300 * ((1.2 * (1.011 ** intervalupgs)) ** intervalupgs))
+        intervalupgs++
+      }
+    }
+    function powerup() {
+      if (copper >= Math.floor(1000 * ((1.15 * (1.005 ** powerupgs)) ** powerupgs))) {
+        copper -= Math.floor(1000 * ((1.15 * (1.005 ** powerupgs)) ** powerupgs))
+        powerupgs++
+      }
+    }
+    function save() {
+      localStorage.upgradebought = JSON.stringify(upgradeboughtlist)
+      localStorage.oreupgradebought = JSON.stringify(oreupgradeboughtlist)
+      localStorage.stone = stone
+      localStorage.copper = copper
+      localStorage.iron = iron
+      localStorage.silver = silver
+      localStorage.gold = gold
+      localStorage.platinum = platinum
+      localStorage.diamond = diamond
+      localStorage.emerald = emerald
+      localStorage.coin = coin
+      localStorage.picklevel = picklevel
+      localStorage.autominerunlock = Number(autominerunlock)
+      localStorage.artifactunlock = Number(artifactunlock)
+      localStorage.autominertier = autominertier
+      localStorage.intervalupgs = intervalupgs
+      localStorage.powerupgs = powerupgs
+      localStorage.minecount = minecount
+      localStorage.playtime = playtime
+      localStorage.box = JSON.stringify(box)
+      localStorage.artifacts = JSON.stringify(artifactstat)
+    }
+    function load() {
+      upgradeboughtlist = JSON.parse(localStorage.upgradebought || "[]")
+      oreupgradeboughtlist = JSON.parse(localStorage.oreupgradebought || "[]")
+      sellmult = Number(localStorage.sellmult || 1)
+      picklevel = Number(localStorage.picklevel || 0)
+      autominertier = Number(localStorage.autominertier || 1)
+      autominerpowermult = Number(localStorage.autominerpowermult || 1)
+      intervalupgs = Number(localStorage.intervalupgs || 0)
+      powerupgs = Number(localStorage.powerupgs || 0)
+      artifactstat = JSON.parse(localStorage.artifacts || `[{"id":0,"level":0,"maxlevel":30,"name":"Improved Gear","lore":"Decrease Autominer Interval Limit","rarity":0},{"id":1,"level":0,"maxlevel":20,"name":"Broken Necklace","lore":"Critical Mine with a constant Probability","rarity":0},{"id":2,"level":0,"maxlevel":50,"name":"Slow Machine","lore":"Increase Cooldown, but you get more ores","rarity":0},{"id":3,"level":0,"maxlevel":15,"name":"Automated Clock","lore":"Increase Autominer Power based on Time Played","rarity":1},{"id":4,"level":0,"maxlevel":30,"name":"Enchanted Ore","lore":"Increase Sell Multiplier based on Mine Count","rarity":1},{"id":5,"level":0,"maxlevel":10,"name":"Mechanical Pickaxe","lore":"Mine Automatically(Not Autominer), but Cooldown in longer","rarity":2}]`)
+      box = JSON.parse(localStorage.box || "[0, 0, 0, 0, 0]")
+      playtime = Number(localStorage.playtime || 0)
+      minecount = Number(localStorage.minecount || 0)
+      autominerunlock = Boolean(Number(localStorage.autominerunlock) || 0)
+      artifactunlock = Boolean(Number(localStorage.artifactunlock) || 0)
+      /*
+      stonetype = [2, 100, 1, 1]
+      coppertype = [0, 50, 1, 0]
+      irontype = [0, 30, 1, 0]
+      silvertype = [0, 10, 1, 0]
+      goldtype = [0, 5, 1, 0]
+      platinumtype = [0, 3, 1, 0]
+      diamondtype = [0, 2, 1, 0]
+      emeraldtype = [0, 1, 1, 0]
+      */
+
+      // upgrade load
+      upgradecopied = []
+      oreupgradecopied = []
+      upgradelist = []
+      oreupgradelist = []
+      upgradeboughtlist2 = []
+      oreupgradeboughtlist2 = []
+      deepcopy(upgradelistr, upgradelist)
+      deepcopy(oreupgradelistr, oreupgradelist)
+      deepcopy(upgradeboughtlist, upgradecopied)
+      deepcopy(oreupgradeboughtlist, oreupgradecopied)
+      upgradecopied.sort(function (a, b) {
+        return a - b;
+      })
+      oreupgradecopied.sort(function (a, b) {
+        return a - b;
+      })
+      upgradelist.push('Unknown | Infinity Coin')
+      upgradelist.push('Unknown | Infinity Coin')
+      upgradelist.push('Unknown | Infinity Coin')
+      upgradelist.push('Unknown | Infinity Coin')
+      upgradelist.push('Unknown | Infinity Coin')
+      oreupgradelist.push('Unknown | Infinity Ore')
+      oreupgradelist.push('Unknown | Infinity Ore')
+      oreupgradelist.push('Unknown | Infinity Ore')
+      oreupgradelist.push('Unknown | Infinity Ore')
+      oreupgradelist.push('Unknown | Infinity Ore')
+      stonetype = [2, 100, 1, 1]
+      coppertype = [0, 50, 1, 0]
+      irontype = [0, 30, 1, 0]
+      silvertype = [0, 10, 1, 0]
+      goldtype = [0, 5, 1, 0]
+      platinumtype = [0, 3, 1, 0]
+      diamondtype = [0, 2, 1, 0]
+      emeraldtype = [0, 1, 1, 0]
+      cooldown = 50
+      sellmult = 1
+      for (i = 0; i < upgradecopied.length; i++) {
+        upgradeboughtlist2.push(upgradecopied[i] - i)
+      }
+      for (i = 0; i < oreupgradecopied.length; i++) {
+        oreupgradeboughtlist2.push(oreupgradecopied[i] - i)
+      }
+      selectedupgrade = 0
+      for (i = 0; i < upgradeboughtlist2.length; i++) {
+        pickupgradev2(upgradeboughtlist2[i])
+      }
+      selectedupgrade = 1
+      for (i = 0; i < oreupgradeboughtlist2.length; i++) {
+        pickupgradev2(oreupgradeboughtlist2[i])
+      }
+      selectedupgrade = 0
+      stone = Number(localStorage.stone || 0)
+      copper = Number(localStorage.copper || 0)
+      iron = Number(localStorage.iron || 0)
+      silver = Number(localStorage.silver || 0)
+      gold = Number(localStorage.gold || 0)
+      platinum = Number(localStorage.platinum || 0)
+      diamond = Number(localStorage.diamond || 0)
+      emerald = Number(localStorage.emerald || 0)
+      coin = Number(localStorage.coin || 0)
+      if (picklevel >= 0) {
+        coppertype[0] = 1
+      }
+      if (picklevel >= 1) {
+        irontype[0] = 1
+      }
+      if (picklevel >= 2) {
+        silvertype[0] = 1
+      }
+      if (picklevel >= 3) {
+        goldtype[0] = 1
+      }
+      if (picklevel >= 4) {
+        platinumtype[0] = 1
+      }
+      if (picklevel >= 5) {
+        diamondtype[0] = 1
+      }
+      if (picklevel >= 6) {
+        emeraldtype[0] = 1
+      }
+    }
+    load()
+    function isCommon(element) {
+      if (element.rarity === 0) {
+        return true;
+      }
+    }
+    function isUncommon(element) {
+      if (element.rarity === 1) {
+        return true;
+      }
+    }
+    function isRare(element) {
+      if (element.rarity === 2) {
+        return true;
+      }
+    }
+    function isTrue(element) {
+      if (element.level != 0) {
+        return true;
+      }
+    }
+    function openbox(number) {
+      if (box[number] >= 1) {
+        box[number] -= 1
+        seed = random(1, 10000)
+        if (seed <= 8000) {
+          commons = artifactstat.filter(isCommon)
+          seed2 = random(0, commons.length - 1)
+          console.log(commons)
+          artifactstat[artifactstat[seed2]["id"]]["level"] += 1
+        } else if (seed <= 9500) {
+          uncommons = artifactstat.filter(isUncommon)
+          seed2 = random(1, uncommons.length)
+          artifactstat[artifactstat[seed2]["id"]]["level"] += 1
+        } else if (seed <= 10000) {
+          rares = artifactstat.filter(isRare)
+          seed2 = random(1, rares.length)
+          artifactstat[artifactstat[seed2]["id"]]["level"] += 1
         }
       }
-      function isUncommon(element) {
-        if(element.rarity === 1)  {
-          return true;
-        }
+    }
+    function select(number) {
+      selectedore += number
+      if (selectedore < 1) { selectedore = 1 }
+      if (selectedore > autominertier) { selectedore = autominertier }
+    }
+    function random(a, b) {
+      return Math.floor(Math.random() * (b - a + 1) + a)
+    }
+    function getore(ore) {
+      if (ore[0] == 2) {
+        return random(ore[2], ore[2] + ore[3])
       }
-      function isRare(element) {
-        if(element.rarity === 2)  {
-          return true;
+      else if (ore[0] == 1) {
+        if (random(1, 100) < ore[1]) {
+          return 1
         }
-      }
-      function isTrue(element) {
-        if(element.level != 0) {
-          return true;
-        }
-      }
-      function openbox(number) {
-        if (box[number] >= 1) {
-          box[number] -= 1
-          seed = random(1, 10000)
-          if (seed <= 8000) {
-            commons = artifactstat.filter(isCommon)
-            seed2 = random(0, commons.length - 1)
-            console.log(commons)
-            artifactstat[artifactstat[seed2]["id"]]["level"] += 1
-          } else if (seed <= 9500) {
-            uncommons = artifactstat.filter(isUncommon)
-            seed2 = random(1, uncommons.length)
-            artifactstat[artifactstat[seed2]["id"]]["level"] += 1
-          } else if (seed <= 10000) {
-            rares = artifactstat.filter(isRare)
-            seed2 = random(1, rares.length)
-            artifactstat[artifactstat[seed2]["id"]]["level"] += 1
-          }
-        }
-      }
-      function select(number) {
-        selectedore += number
-        if (selectedore < 1) {selectedore = 1}
-        if (selectedore > autominertier) {selectedore = autominertier}
-      }
-      function random(a, b) {
-        return Math.floor( Math.random() * ( b - a + 1) + a )
-      }
-      function getore(ore) {
-        if (ore[0] == 2) {
-          return random(ore[2], ore[2] + ore[3])
-        }
-        else if (ore[0] == 1) {
-          if (random(1, 100) < ore[1]) {
-            return 1
-          }
-          else {
-            return 0
-          }
-        }
-        else if (ore[0] == 0) {
+        else {
           return 0
         }
       }
-      function mine() {
-        if (curcooldown <= 0) {
-          curcooldown = cooldown
-          stone += getore(stonetype)
-          copper += getore(coppertype)
-          iron += getore(irontype)
-          silver += getore(silvertype)
-          gold += getore(goldtype)
-          platinum += getore(platinumtype)
-          diamond += getore(diamondtype)
-          emerald += getore(emeraldtype)
-          minecount += 1
-        }
+      else if (ore[0] == 0) {
+        return 0
       }
-      { // sell
+    }
+    function mine() {
+      if (curcooldown <= 0) {
+        curcooldown = cooldown
+        stone += getore(stonetype)
+        copper += getore(coppertype)
+        iron += getore(irontype)
+        silver += getore(silvertype)
+        gold += getore(goldtype)
+        platinum += getore(platinumtype)
+        diamond += getore(diamondtype)
+        emerald += getore(emeraldtype)
+        minecount += 1
+      }
+    }
+    { // sell
       function stonesell1() {
         if (stone > 0) {
           stone -= 1
@@ -500,270 +524,271 @@
         coin += Math.floor(emerald * 5e13 * sellmult)
         emerald = 0
       }
+    }
+
+    function test() {
+      if (upgrades >= pickupglist[picklevel] && pickupgprice[picklevel].split(" ")[0] <= orelist[picklevel]) {
+        if (picklevel == 0) {
+          stone -= 10
+          coppertype[0] = 1
+        }
+        if (picklevel == 1) {
+          copper -= 20
+          irontype[0] = 1
+        }
+        if (picklevel == 2) {
+          iron -= 30
+          silvertype[0] = 1
+        }
+        if (picklevel == 3) {
+          silver -= 40
+          goldtype[0] = 1
+        }
+        if (picklevel == 4) {
+          gold -= 60
+          platinumtype[0] = 1
+        }
+        if (picklevel == 5) {
+          platinum -= 300
+          diamondtype[0] = 1
+        }
+        if (picklevel == 6) {
+          diamond -= 1200
+          emeraldtype[0] = 1
+        }
+        picklevel++
+      }
+    }
+    function artifacttab(number) {
+      if (artifactunlocked.length == 0) { console.log("no artifacts"); return }
+      artifactpage += number
+      if (artifactpage < 0) {
+        artifactpage = 0
+      }
+      if (artifactpage > Math.floor(artifactunlocked.length - 1 / 4)) {
+        artifactpage = Math.floor(artifactunlocked.length - 1 / 4)
+      }
+    }
+    function scientific(number) {
+      if (number == Infinity) { return "Infinity" }
+      if (number < 10000) {
+        return Math.floor(number)
+      } else {
+        return number.toExponential(2).replace("+", "")
+      }
+    }
+    function standard(number) {
+      const standards = [' K', ' M', ' B', ' T', ' Qa', ' Qt', ' Sx', ' Sp', ' Oc', ' No', ' Dc', ' UDc', ' DDc', ' TDc', ' QaDc', ' QtDc', ' SxDc', ' SpDc', ' ODc', ' NDc', ' Vg', ' UVg', ' DVg', ' TVg', ' QaVg', ' QtVg', ' SxVg', ' SpVg', ' OVg', ' NVg', ' Tg']
+      standardpointer = -1
+      if (number == Infinity) { return "Infinity" }
+      if (number < 1000) {
+        return Math.floor(number)
+      } else if (number < 1000 ** (standards.length - 1)) {
+        returnnumber = number
+        while (returnnumber >= 1000) {
+          returnnumber /= 1000
+          standardpointer += 1
+        }
+        result = String(returnnumber.toFixed(1)) + standards[standardpointer]
+        return result
+      } else {
+        return scientific(number)
+      }
+    }
+    function unlockartifact() {
+      if (emerald >= 5) {
+        emerald -= 5
+        artifactunlock = true
+        box[0] += 1
+      }
+    }
+    function notation(number) {
+      return standard(number)
+    }
+    function autominer() {
+      setTimeout(function () {
+        if (autominerunlock) {
+          if (selectedore == 1) { autominergain = Math.floor(autominerpower * autominerpowermult); stone += autominergain }
+          if (selectedore == 2) { autominergain = Math.floor(autominerpower / 5 * autominerpowermult); copper += autominergain }
+          if (selectedore == 3) { autominergain = Math.floor(autominerpower / 40 * autominerpowermult); iron += autominergain }
+          if (selectedore == 4) { autominergain = Math.floor(autominerpower / 300 * autominerpowermult); silver += autominergain }
+          if (selectedore == 5) { autominergain = Math.floor(autominerpower / 3000 * autominerpowermult); gold += autominergain }
+          if (selectedore == 6) { autominergain = Math.floor(autominerpower / 40000 * autominerpowermult); platinum += autominergain }
+          if (selectedore == 7) { autominergain = Math.floor(autominerpower / 700000 * autominerpowermult); diamond += autominergain }
+        }
+        autominer()
+      }, autominerinterval * 1000)
+    }
+    autominer()
+    setInterval(function () {
+      if (curcooldown != 0) {
+        curcooldown -= 1
+      }
+      document.getElementById('commonbox').innerHTML = 'Common Box x' + box[0]
+      document.getElementById('uncommonbox').innerHTML = 'Uncommon Box x' + box[1]
+      document.getElementById('rarebox').innerHTML = 'Rare Box x' + box[2]
+      document.getElementById('epicbox').innerHTML = 'Epic Box x' + box[3]
+      document.getElementById('legendbox').innerHTML = 'Legendary Box x' + box[4]
+      document.getElementById('cooldown').innerHTML = 'cooldown: ' + curcooldown / 10 + 's'
+      document.getElementById('coin').innerHTML = notation(coin) + " Coin"
+      document.getElementById('stone').innerHTML = 'Stone x' + notation(stone)
+      document.getElementById('copper').innerHTML = 'Copper x' + notation(copper)
+      document.getElementById('iron').innerHTML = 'Iron x' + notation(iron)
+      document.getElementById('silver').innerHTML = 'Silver x' + notation(silver)
+      document.getElementById('gold').innerHTML = 'Gold x' + notation(gold)
+      document.getElementById('platinum').innerHTML = 'Platinum x' + notation(platinum)
+      document.getElementById('diamond').innerHTML = 'Diamond x' + notation(diamond)
+      document.getElementById('emerald').innerHTML = 'Emerald x' + notation(emerald)
+      if (upgrades < pickupglist[picklevel]) { document.getElementById('picklvup').innerHTML = 'Level up [ ' + upgrades + " / " + pickupglist[picklevel] + " Upgrades ]" }
+      else { document.getElementById('picklvup').innerHTML = 'Level up [ ' + pickupgprice[picklevel] + ' ]' }
+      document.getElementById('curpicklv').innerHTML = picknames[picklevel]
+      document.getElementById('curpicklv').style.color = pickcolor[picklevel]
+      document.getElementById('stonepermine').innerHTML = '' + Math.floor((picklevel + 2) / 2) + ' ~ ' + Math.floor((picklevel + 3) / 1.5)
+
+      artifactunlocked = artifactstat.filter(isTrue)
+      raritylist = ["Common", "Uncommon", "Rare", "Epic", "Legendary"]
+      raritycolor = ["#fb5", "#dcc", "#aae", "#c9e", "#ee6"]
+      raritycolordark = ["#c95", "#a88", "#99a", "#75a", "#aa5"]
+      for (i = (artifactpage * 4) + 1; i < (artifactpage * 4) + 5; i++) {
+        if (artifactunlocked.length >= i) {
+          document.getElementById('AFname' + (i - (artifactpage * 4))).innerHTML = artifactunlocked[i - 1]["name"]
+          document.getElementById('AFrarity' + (i - (artifactpage * 4))).innerHTML = '[' + raritylist[artifactunlocked[i - 1]["rarity"]] + ']'
+          document.getElementById('AFrarity' + (i - (artifactpage * 4))).style.color = raritycolor[artifactunlocked[i - 1]["rarity"]]
+          document.getElementById('AFrarity' + (i - (artifactpage * 4))).style.textShadow = raritycolordark[artifactunlocked[i - 1]["rarity"]]
+          document.getElementById('AFlevel' + (i - (artifactpage * 4))).innerHTML = 'Lv. ' + artifactunlocked[i - 1]["level"] + ' / ' + artifactunlocked[i - 1]["maxlevel"]
+          document.getElementById('AFdesc' + (i - (artifactpage * 4))).innerHTML = artifactunlocked[i - 1]["lore"]
+        } else {
+          document.getElementById('AFname' + (i - (artifactpage * 4))).innerHTML = ' '
+          document.getElementById('AFrarity' + (i - (artifactpage * 4))).innerHTML = ' '
+          document.getElementById('AFlevel' + (i - (artifactpage * 4))).innerHTML = ' '
+          document.getElementById('AFdesc' + (i - (artifactpage * 4))).innerHTML = ' '
+        }
       }
 
-      function test() {
-        if (upgrades >= pickupglist[picklevel] && pickupgprice[picklevel].split(" ")[0] <= orelist[picklevel]) {
-          if (picklevel == 0) {
-            stone -= 10
-            coppertype[0] = 1
-          }
-          if (picklevel == 1) {
-            copper -= 20
-            irontype[0] = 1
-          }
-          if (picklevel == 2) {
-            iron -= 30
-            silvertype[0] = 1
-          }
-          if (picklevel == 3) {
-            silver -= 40
-            goldtype[0] = 1
-          }
-          if (picklevel == 4) {
-            gold -= 60
-            platinumtype[0] = 1
-          }
-          if (picklevel == 5) {
-            platinum -= 300
-            diamondtype[0] = 1
-          }
-          if (picklevel == 6) {
-            diamond -= 1200
-            emeraldtype[0] = 1
-          }
-          picklevel++
-        }
+      if (selectedupgrade == 0) {
+        document.getElementById('pickupgrade1detail').innerHTML = upgradelist[0].split('|')[0]
+        document.getElementById('pickupgrade2detail').innerHTML = upgradelist[1].split('|')[0]
+        document.getElementById('pickupgrade3detail').innerHTML = upgradelist[2].split('|')[0]
+        document.getElementById('pickupgrade4detail').innerHTML = upgradelist[3].split('|')[0]
+        document.getElementById('pickupgrade5detail').innerHTML = upgradelist[4].split('|')[0]
+        document.getElementById('pickupgrade1price').innerHTML = notation(Number(upgradelist[0].split('|')[1].split(' ')[1])) + ' ' + upgradelist[0].split('|')[1].split(' ')[2]
+        document.getElementById('pickupgrade2price').innerHTML = notation(Number(upgradelist[1].split('|')[1].split(' ')[1])) + ' ' + upgradelist[1].split('|')[1].split(' ')[2]
+        document.getElementById('pickupgrade3price').innerHTML = notation(Number(upgradelist[2].split('|')[1].split(' ')[1])) + ' ' + upgradelist[2].split('|')[1].split(' ')[2]
+        document.getElementById('pickupgrade4price').innerHTML = notation(Number(upgradelist[3].split('|')[1].split(' ')[1])) + ' ' + upgradelist[3].split('|')[1].split(' ')[2]
+        document.getElementById('pickupgrade5price').innerHTML = notation(Number(upgradelist[4].split('|')[1].split(' ')[1])) + ' ' + upgradelist[4].split('|')[1].split(' ')[2]
+      } else if (selectedupgrade == 1) {
+        document.getElementById('pickupgrade1detail').innerHTML = oreupgradelist[0].split('|')[0]
+        document.getElementById('pickupgrade2detail').innerHTML = oreupgradelist[1].split('|')[0]
+        document.getElementById('pickupgrade3detail').innerHTML = oreupgradelist[2].split('|')[0]
+        document.getElementById('pickupgrade4detail').innerHTML = oreupgradelist[3].split('|')[0]
+        document.getElementById('pickupgrade5detail').innerHTML = oreupgradelist[4].split('|')[0]
+        document.getElementById('pickupgrade1price').innerHTML = notation(Number(oreupgradelist[0].split('|')[1].split(' ')[1])) + ' ' + oreupgradelist[0].split('|')[1].split(' ')[2]
+        document.getElementById('pickupgrade2price').innerHTML = notation(Number(oreupgradelist[1].split('|')[1].split(' ')[1])) + ' ' + oreupgradelist[1].split('|')[1].split(' ')[2]
+        document.getElementById('pickupgrade3price').innerHTML = notation(Number(oreupgradelist[2].split('|')[1].split(' ')[1])) + ' ' + oreupgradelist[2].split('|')[1].split(' ')[2]
+        document.getElementById('pickupgrade4price').innerHTML = notation(Number(oreupgradelist[3].split('|')[1].split(' ')[1])) + ' ' + oreupgradelist[3].split('|')[1].split(' ')[2]
+        document.getElementById('pickupgrade5price').innerHTML = notation(Number(oreupgradelist[4].split('|')[1].split(' ')[1])) + ' ' + oreupgradelist[4].split('|')[1].split(' ')[2]
       }
-      function artifacttab(number) {
-        if (artifactunlocked.length == 0) {console.log("no artifacts"); return}
-        artifactpage += number
-        if (artifactpage < 0) {
-          artifactpage = 0
-        }
-        if (artifactpage > Math.floor(artifactunlocked.length - 1 / 4)) {
-          artifactpage = Math.floor(artifactunlocked.length - 1 / 4)
-        }
+      document.getElementById('autominertierup').innerHTML = 'Tier Upgrade<br>' + tierupgprice[autominertier - 1].split(" ")[1] + ' > ' + tierupgprice[autominertier].split(" ")[1] + '<br>' + tierupgprice[autominertier]
+      if (autominerinterval * 900 > 50) {
+        document.getElementById('autominerintervalup').innerHTML = 'Interval Upgrade<br>' + (1000 * autominerinterval).toFixed(1) + 'ms > ' + (900 * autominerinterval).toFixed(1) + 'ms<br>' + notation(Math.floor(300 * ((1.2 * (1.011 ** intervalupgs)) ** intervalupgs))) + ' Iron'
+      } else if (autominerinterval * 1000 > 50) {
+        document.getElementById('autominerintervalup').innerHTML = 'Interval Upgrade<br>' + (1000 * autominerinterval).toFixed(1) + 'ms > 50.0ms<br>' + notation(Math.floor(300 * ((1.2 * (1.011 ** intervalupgs)) ** intervalupgs))) + ' Iron'
+      } else {
+        document.getElementById('autominerintervalup').innerHTML = 'Interval Upgrade<br> 50.0 ms'
       }
-      function scientific(number) {
-        if (number == Infinity) {return "Infinity"}
-        if (number < 10000) {
-          return Math.floor(number)
-        } else {
-          return number.toExponential(2).replace("+","")
-        }
+      document.getElementById('autominerpowerup').innerHTML = 'Power Upgrade<br>' + notation(100 * ((1.15 ** powerupgs) + powerupgs)) + ' > ' + notation(100 * ((1.15 ** (powerupgs + 1)) + powerupgs + 1)) + '<br>' + notation(Math.floor(1000 * ((1.15 * (1.005 ** powerupgs)) ** powerupgs))) + ' Copper'
+      document.getElementById('autominerselected').innerHTML = picknames[selectedore].split(" ")[0]
+      document.getElementById('autominerselected').style.color = pickcolor[selectedore]
+      if (autominerunlock == true) {
+        document.getElementById('autominerlocked').style.display = 'none'
+        for (i = 0; i < document.getElementsByClassName('autominer').length; i++) { document.getElementsByClassName('autominer')[i].style.display = 'block' }
+      } else {
+        document.getElementById('autominerlocked').style.display = 'block'
+        for (i = 0; i < document.getElementsByClassName('autominer').length; i++) { document.getElementsByClassName('autominer')[i].style.display = 'none' }
       }
-      function standard(number) {
-        const standards = [' K', ' M', ' B', ' T', ' Qa', ' Qt', ' Sx', ' Sp', ' Oc', ' No']
-        standardpointer = -1
-        if (number == Infinity) {return "Infinity"}
-        if (number < 1000) {
-          return Math.floor(number)
-        } else if (number < 1e33){
-          returnnumber = number
-          while (returnnumber >= 1000) {
-            returnnumber /= 1000
-            standardpointer += 1
-          }
-          result = String(returnnumber.toFixed(1)) + standards[standardpointer]
-          return result
-        } else {
-          return scientific(number)
+      if (artifactunlock == true) {
+        if (selectedartifact == 0) {
+          document.getElementById('artifactlocked').style.display = 'none'
+          document.getElementById('boxselect').style.display = 'block'
+          document.getElementById('artifactselect').style.display = 'block'
+          for (i = 0; i < document.getElementsByClassName('box').length; i++) { document.getElementsByClassName('box')[i].style.display = 'block' }
+          for (i = 0; i < document.getElementsByClassName('artifacts').length; i++) { document.getElementsByClassName('artifacts')[i].style.display = 'none' }
         }
+        else {
+          document.getElementById('artifactlocked').style.display = 'none'
+          document.getElementById('boxselect').style.display = 'block'
+          document.getElementById('artifactselect').style.display = 'block'
+          for (i = 0; i < document.getElementsByClassName('box').length; i++) { document.getElementsByClassName('box')[i].style.display = 'none' }
+          for (i = 0; i < document.getElementsByClassName('artifacts').length; i++) { document.getElementsByClassName('artifacts')[i].style.display = 'block' }
+        }
+      } else {
+        document.getElementById('artifactlocked').style.display = 'block'
+        for (i = 0; i < document.getElementsByClassName('artifact').length; i++) { document.getElementsByClassName('artifact')[i].style.display = 'none' }
       }
-      function unlockartifact() {
-        if (emerald >= 5) {
-          emerald -= 5
-          artifactunlock = true
-          box[0] += 1
-        }
+      if (debug == true) {
+        for (i = 0; i < document.getElementsByClassName('debug').length; i++) { document.getElementsByClassName('debug')[i].style.display = 'block' }
+      } else {
+        for (i = 0; i < document.getElementsByClassName('debug').length; i++) { document.getElementsByClassName('debug')[i].style.display = 'none' }
       }
-      function notation(number) {
-        return standard(number)
+      if (coppertype[0] == 1 && coppertype[1] == 100) {
+        coppertype[0] = 2
       }
-      function autominer() {
-        setTimeout(function() {
-          if (autominerunlock) {
-            if (selectedore == 1) {autominergain = Math.floor(autominerpower * autominerpowermult); stone += autominergain}
-            if (selectedore == 2) {autominergain = Math.floor(autominerpower / 5 * autominerpowermult); copper += autominergain}
-            if (selectedore == 3) {autominergain = Math.floor(autominerpower / 40 * autominerpowermult); iron += autominergain}
-            if (selectedore == 4) {autominergain = Math.floor(autominerpower / 300 * autominerpowermult); silver += autominergain}
-            if (selectedore == 5) {autominergain = Math.floor(autominerpower / 3000 * autominerpowermult); gold += autominergain}
-            if (selectedore == 6) {autominergain = Math.floor(autominerpower / 40000 * autominerpowermult); platinum += autominergain}
-            if (selectedore == 7) {autominergain = Math.floor(autominerpower / 700000 * autominerpowermult); diamond += autominergain}
-            }
-          autominer()
-        }, autominerinterval * 1000)
+      if (irontype[0] == 1 && irontype[1] == 100) {
+        irontype[0] = 2
       }
-      autominer()
-      setInterval(function() {
-        if (curcooldown != 0) {
-          curcooldown -= 1
-        }
-        document.getElementById('commonbox').innerHTML = 'Common Box x' + box[0]
-        document.getElementById('uncommonbox').innerHTML = 'Uncommon Box x' + box[1]
-        document.getElementById('rarebox').innerHTML = 'Rare Box x' + box[2]
-        document.getElementById('epicbox').innerHTML = 'Epic Box x' + box[3]
-        document.getElementById('legendbox').innerHTML = 'Legendary Box x' + box[4]
-        document.getElementById('cooldown').innerHTML = 'cooldown: ' + curcooldown / 10 + 's'
-        document.getElementById('coin').innerHTML = notation(coin) + " Coin"
-        document.getElementById('stone').innerHTML = 'Stone x' + notation(stone)
-        document.getElementById('copper').innerHTML = 'Copper x' + notation(copper)
-        document.getElementById('iron').innerHTML = 'Iron x' + notation(iron)
-        document.getElementById('silver').innerHTML = 'Silver x' + notation(silver)
-        document.getElementById('gold').innerHTML = 'Gold x' + notation(gold)
-        document.getElementById('platinum').innerHTML = 'Platinum x' + notation(platinum)
-        document.getElementById('diamond').innerHTML = 'Diamond x' + notation(diamond)
-        document.getElementById('emerald').innerHTML = 'Emerald x' + notation(emerald)
-        if (upgrades < pickupglist[picklevel]) {document.getElementById('picklvup').innerHTML = 'Level up [ ' + upgrades + " / " + pickupglist[picklevel] + " Upgrades ]"}
-        else {document.getElementById('picklvup').innerHTML = 'Level up [ ' + pickupgprice[picklevel] + ' ]'}
-        document.getElementById('curpicklv').innerHTML = picknames[picklevel]
-        document.getElementById('curpicklv').style.color = pickcolor[picklevel]
-        document.getElementById('stonepermine').innerHTML = '' + Math.floor((picklevel + 2) / 2) + ' ~ ' + Math.floor((picklevel + 3) / 1.5)
-
-        artifactunlocked = artifactstat.filter(isTrue)
-        raritylist = ["Common", "Uncommon", "Rare", "Epic", "Legendary"]
-        raritycolor = ["#fb5", "#dcc", "#aae", "#c9e", "#ee6"]
-        raritycolordark = ["#c95", "#a88", "#99a", "#75a", "#aa5"]
-        for (i=(artifactpage * 4) + 1; i<(artifactpage * 4) + 5; i++) {
-          if (artifactunlocked.length >= i) {
-            document.getElementById('AFname' + (i - (artifactpage * 4))).innerHTML = artifactunlocked[i - 1]["name"]
-            document.getElementById('AFrarity' + (i - (artifactpage * 4))).innerHTML = '[' + raritylist[artifactunlocked[i - 1]["rarity"]] + ']'
-            document.getElementById('AFrarity' + (i - (artifactpage * 4))).style.color = raritycolor[artifactunlocked[i - 1]["rarity"]]
-            document.getElementById('AFrarity' + (i - (artifactpage * 4))).style.textShadow = raritycolordark[artifactunlocked[i - 1]["rarity"]]
-            document.getElementById('AFlevel' + (i - (artifactpage * 4))).innerHTML = 'Lv. ' + artifactunlocked[i - 1]["level"] + ' / ' + artifactunlocked[i - 1]["maxlevel"]
-            document.getElementById('AFdesc' + (i - (artifactpage * 4))).innerHTML = artifactunlocked[i - 1]["lore"]
-          } else {
-            document.getElementById('AFname' + (i - (artifactpage * 4))).innerHTML = ' '
-            document.getElementById('AFrarity' + (i - (artifactpage * 4))).innerHTML = ' '
-            document.getElementById('AFlevel' + (i - (artifactpage * 4))).innerHTML = ' '
-            document.getElementById('AFdesc' + (i - (artifactpage * 4))).innerHTML = ' '
-          }
-        }
-
-        if (selectedupgrade == 0) {
-          document.getElementById('pickupgrade1detail').innerHTML = upgradelist[0].split('|')[0]
-          document.getElementById('pickupgrade2detail').innerHTML = upgradelist[1].split('|')[0]
-          document.getElementById('pickupgrade3detail').innerHTML = upgradelist[2].split('|')[0]
-          document.getElementById('pickupgrade4detail').innerHTML = upgradelist[3].split('|')[0]
-          document.getElementById('pickupgrade5detail').innerHTML = upgradelist[4].split('|')[0]
-          document.getElementById('pickupgrade1price').innerHTML = notation(Number(upgradelist[0].split('|')[1].split(' ')[1])) + ' ' + upgradelist[0].split('|')[1].split(' ')[2]
-          document.getElementById('pickupgrade2price').innerHTML = notation(Number(upgradelist[1].split('|')[1].split(' ')[1])) + ' ' + upgradelist[1].split('|')[1].split(' ')[2]
-          document.getElementById('pickupgrade3price').innerHTML = notation(Number(upgradelist[2].split('|')[1].split(' ')[1])) + ' ' + upgradelist[2].split('|')[1].split(' ')[2]
-          document.getElementById('pickupgrade4price').innerHTML = notation(Number(upgradelist[3].split('|')[1].split(' ')[1])) + ' ' + upgradelist[3].split('|')[1].split(' ')[2]
-          document.getElementById('pickupgrade5price').innerHTML = notation(Number(upgradelist[4].split('|')[1].split(' ')[1])) + ' ' + upgradelist[4].split('|')[1].split(' ')[2]
-        } else if (selectedupgrade == 1) {
-          document.getElementById('pickupgrade1detail').innerHTML = oreupgradelist[0].split('|')[0]
-          document.getElementById('pickupgrade2detail').innerHTML = oreupgradelist[1].split('|')[0]
-          document.getElementById('pickupgrade3detail').innerHTML = oreupgradelist[2].split('|')[0]
-          document.getElementById('pickupgrade4detail').innerHTML = oreupgradelist[3].split('|')[0]
-          document.getElementById('pickupgrade5detail').innerHTML = oreupgradelist[4].split('|')[0]
-          document.getElementById('pickupgrade1price').innerHTML = notation(Number(oreupgradelist[0].split('|')[1].split(' ')[1])) + ' ' + oreupgradelist[0].split('|')[1].split(' ')[2]
-          document.getElementById('pickupgrade2price').innerHTML = notation(Number(oreupgradelist[1].split('|')[1].split(' ')[1])) + ' ' + oreupgradelist[1].split('|')[1].split(' ')[2]
-          document.getElementById('pickupgrade3price').innerHTML = notation(Number(oreupgradelist[2].split('|')[1].split(' ')[1])) + ' ' + oreupgradelist[2].split('|')[1].split(' ')[2]
-          document.getElementById('pickupgrade4price').innerHTML = notation(Number(oreupgradelist[3].split('|')[1].split(' ')[1])) + ' ' + oreupgradelist[3].split('|')[1].split(' ')[2]
-          document.getElementById('pickupgrade5price').innerHTML = notation(Number(oreupgradelist[4].split('|')[1].split(' ')[1])) + ' ' + oreupgradelist[4].split('|')[1].split(' ')[2]
-        }
-        document.getElementById('autominertierup').innerHTML = 'Tier Upgrade<br>' + tierupgprice[autominertier - 1].split(" ")[1] + ' > ' + tierupgprice[autominertier].split(" ")[1] + '<br>' + tierupgprice[autominertier]
-        if (autominerinterval * 900 > 50) {
-          document.getElementById('autominerintervalup').innerHTML = 'Interval Upgrade<br>' + (1000 * autominerinterval).toFixed(1) + 'ms > ' + (900 * autominerinterval).toFixed(1) + 'ms<br>' + notation(Math.floor(300 * ((1.2 * (1.011 ** intervalupgs)) ** intervalupgs))) + ' Iron'
-        } else if (autominerinterval * 1000 > 50) {
-          document.getElementById('autominerintervalup').innerHTML = 'Interval Upgrade<br>' + (1000 * autominerinterval).toFixed(1) + 'ms > 50.0ms<br>' + notation(Math.floor(300 * ((1.2 * (1.011 ** intervalupgs)) ** intervalupgs))) + ' Iron'
-        } else {
-          document.getElementById('autominerintervalup').innerHTML = 'Interval Upgrade<br> 50.0 ms'
-        }
-        document.getElementById('autominerpowerup').innerHTML = 'Power Upgrade<br>' + notation(100 * ((1.15 ** powerupgs) + powerupgs)) + ' > ' + notation(100 * ((1.15 ** (powerupgs + 1)) + powerupgs + 1)) + '<br>' + notation(Math.floor(1000 * ((1.15 * (1.005 ** powerupgs)) ** powerupgs))) + ' Copper'
-        document.getElementById('autominerselected').innerHTML = picknames[selectedore].split(" ")[0]
-        document.getElementById('autominerselected').style.color = pickcolor[selectedore]
-        if (autominerunlock == true) {
-          document.getElementById('autominerlocked').style.display = 'none'
-          for (i=0; i<document.getElementsByClassName('autominer').length; i++) {document.getElementsByClassName('autominer')[i].style.display = 'block'}
-        } else {
-          document.getElementById('autominerlocked').style.display = 'block'
-          for (i=0; i<document.getElementsByClassName('autominer').length; i++) {document.getElementsByClassName('autominer')[i].style.display = 'none'}
-        }
-        if (artifactunlock == true) {
-          if (selectedartifact == 0) {
-            document.getElementById('artifactlocked').style.display = 'none'
-            document.getElementById('boxselect').style.display = 'block'
-            document.getElementById('artifactselect').style.display = 'block'
-            for (i=0; i<document.getElementsByClassName('box').length; i++) {document.getElementsByClassName('box')[i].style.display = 'block'}
-            for (i=0; i<document.getElementsByClassName('artifacts').length; i++) {document.getElementsByClassName('artifacts')[i].style.display = 'none'}
-          }
-          else {
-            document.getElementById('artifactlocked').style.display = 'none'
-            document.getElementById('boxselect').style.display = 'block'
-            document.getElementById('artifactselect').style.display = 'block'
-            for (i=0; i<document.getElementsByClassName('box').length; i++) {document.getElementsByClassName('box')[i].style.display = 'none'}
-            for (i=0; i<document.getElementsByClassName('artifacts').length; i++) {document.getElementsByClassName('artifacts')[i].style.display = 'block'}
-          }
-        } else {
-          document.getElementById('artifactlocked').style.display = 'block'
-          for (i=0; i<document.getElementsByClassName('artifact').length; i++) {document.getElementsByClassName('artifact')[i].style.display = 'none'}
-        }
-        if (debug == true) {
-          for (i=0; i<document.getElementsByClassName('debug').length; i++) {document.getElementsByClassName('debug')[i].style.display = 'block'}
-        } else {
-          for (i=0; i<document.getElementsByClassName('debug').length; i++) {document.getElementsByClassName('debug')[i].style.display = 'none'}
-        }
-        if (coppertype[0] == 1 && coppertype[1] == 100) {
-          coppertype[0] = 2
-        }
-        if (irontype[0] == 1 && irontype[1] == 100) {
-          irontype[0] = 2
-        }
-        if (silvertype[0] == 1 && silvertype[1] == 100) {
-          silvertype[0] = 2
-        }
-        if (goldtype[0] == 1 && goldtype[1] == 100) {
-          goldtype[0] = 2
-        }
-        if (platinumtype[0] == 1 && platinumtype[1] == 100) {
-          platinumtype[0] = 2
-        }
-        if (diamondtype[0] == 1 && diamondtype[1] == 100) {
-          diamondtype[0] = 2
-        }
-        orelist = [stone, copper, iron, silver, gold, platinum, diamond, emerald]
+      if (silvertype[0] == 1 && silvertype[1] == 100) {
+        silvertype[0] = 2
+      }
+      if (goldtype[0] == 1 && goldtype[1] == 100) {
+        goldtype[0] = 2
+      }
+      if (platinumtype[0] == 1 && platinumtype[1] == 100) {
+        platinumtype[0] = 2
+      }
+      if (diamondtype[0] == 1 && diamondtype[1] == 100) {
+        diamondtype[0] = 2
+      }
+      orelist = [stone, copper, iron, silver, gold, platinum, diamond, emerald]
 
 
-        buyabletest(0)
-        buyabletest(1)
-        buyabletest(2)
-        buyabletest(3)
-        buyabletest(4)
-        if (3000 * (0.9 ** intervalupgs) > 50) {autominerinterval = 3 * (0.9 ** intervalupgs)} else {autominerinterval = 0.05}
+      buyabletest(0)
+      buyabletest(1)
+      buyabletest(2)
+      buyabletest(3)
+      buyabletest(4)
+      if (3000 * (0.9 ** intervalupgs) > 50) { autominerinterval = 3 * (0.9 ** intervalupgs) } else { autominerinterval = 0.05 }
 
-        autominerpower = 100 * ((1.16 ** powerupgs) + powerupgs)
-        oretypelist = [stonetype, coppertype, irontype, silvertype, goldtype, platinumtype, diamondtype, emeraldtype]
-        autominergain = [1, 5, 40, 300, 3000, 40000, 700000]
-        for (i=0; i<oretypelist.length; i++) {
-          if (oretypelist[i][0] == 0) {document.getElementById(orelists[i] + 'gain').innerHTML = '0%'}
-          if (oretypelist[i][0] == 1) {document.getElementById(orelists[i] + 'gain').innerHTML = String(oretypelist[i][1]) + '%'}
-          if (oretypelist[i][0] == 2) {document.getElementById(orelists[i] + 'gain').innerHTML = notation(oretypelist[i][2]) + ' - ' + notation(oretypelist[i][2] + oretypelist[i][3])}
-        }
-        document.getElementById('autominergaintick').innerHTML = notation(autominerpower * autominerpowermult / autominergain[selectedore - 1]) + ' ' + orelists[selectedore - 1] + ' / tick'
-        document.getElementById('autominergainsec').innerHTML = notation(autominerpower * autominerpowermult / autominergain[selectedore - 1] * (1 / autominerinterval)) + ' ' + orelists[selectedore - 1] + ' / second'
-        playtime += 0.1
-        /*           } else if (selectedupgrade == 1) {
-            if (oreupgradelist[num].split("|")[1].split(" ")[2] == "Stone") {
-              stone -= oreupgradelist[num].split("|")[1].split(" ")[1]}
-            if (oreupgradelist[num].split("|")[1].split(" ")[2] == "Copper") {
-              copper -= oreupgradelist[num].split("|")[1].split(" ")[1]}
-            if (oreupgradelist[num].split("|")[1].split(" ")[2] == "Iron") {
-              iron -= oreupgradelist[num].split("|")[1].split(" ")[1]}
-            if (oreupgradelist[num].split("|")[1].split(" ")[2] == "Silver") {
-              silver -= oreupgradelist[num].split("|")[1].split(" ")[1]}
-            if (oreupgradelist[num].split("|")[1].split(" ")[2] == "Gold") {
-              gold -= oreupgradelist[num].split("|")[1].split(" ")[1]}
-            if (oreupgradelist[num].split("|")[1].split(" ")[2] == "Platinum") {
-              platinum -= oreupgradelist[num].split("|")[1].split(" ")[1]}
-            upgradeboughtlist.push(oreupgradelistr.indexOf(oreupgradelist[num]))
-            oreupgradelist.splice(num, 1)
-            oreupgradeboughtlist.sort(function(a, b) {
-              return a - b;
-              */
-      }, 100)
-    </script>
-  </body>
+      autominerpower = 100 * ((1.16 ** powerupgs) + powerupgs)
+      oretypelist = [stonetype, coppertype, irontype, silvertype, goldtype, platinumtype, diamondtype, emeraldtype]
+      autominergain = [1, 5, 40, 300, 3000, 40000, 700000]
+      for (i = 0; i < oretypelist.length; i++) {
+        if (oretypelist[i][0] == 0) { document.getElementById(orelists[i] + 'gain').innerHTML = '0%' }
+        if (oretypelist[i][0] == 1) { document.getElementById(orelists[i] + 'gain').innerHTML = String(oretypelist[i][1]) + '%' }
+        if (oretypelist[i][0] == 2) { document.getElementById(orelists[i] + 'gain').innerHTML = notation(oretypelist[i][2]) + ' - ' + notation(oretypelist[i][2] + oretypelist[i][3]) }
+      }
+      document.getElementById('autominergaintick').innerHTML = notation(autominerpower * autominerpowermult / autominergain[selectedore - 1]) + ' ' + orelists[selectedore - 1] + ' / tick'
+      document.getElementById('autominergainsec').innerHTML = notation(autominerpower * autominerpowermult / autominergain[selectedore - 1] * (1 / autominerinterval)) + ' ' + orelists[selectedore - 1] + ' / second'
+      playtime += 0.1
+      /*           } else if (selectedupgrade == 1) {
+          if (oreupgradelist[num].split("|")[1].split(" ")[2] == "Stone") {
+            stone -= oreupgradelist[num].split("|")[1].split(" ")[1]}
+          if (oreupgradelist[num].split("|")[1].split(" ")[2] == "Copper") {
+            copper -= oreupgradelist[num].split("|")[1].split(" ")[1]}
+          if (oreupgradelist[num].split("|")[1].split(" ")[2] == "Iron") {
+            iron -= oreupgradelist[num].split("|")[1].split(" ")[1]}
+          if (oreupgradelist[num].split("|")[1].split(" ")[2] == "Silver") {
+            silver -= oreupgradelist[num].split("|")[1].split(" ")[1]}
+          if (oreupgradelist[num].split("|")[1].split(" ")[2] == "Gold") {
+            gold -= oreupgradelist[num].split("|")[1].split(" ")[1]}
+          if (oreupgradelist[num].split("|")[1].split(" ")[2] == "Platinum") {
+            platinum -= oreupgradelist[num].split("|")[1].split(" ")[1]}
+          upgradeboughtlist.push(oreupgradelistr.indexOf(oreupgradelist[num]))
+          oreupgradelist.splice(num, 1)
+          oreupgradeboughtlist.sort(function(a, b) {
+            return a - b;
+            */
+    }, 100)
+  </script>
+</body>
+
 </html>
