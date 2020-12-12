@@ -20,20 +20,23 @@ function autominer() {
     if (intervalupgs >= 39) {
       intervale = 950
     } else { intervale = 900 }
-    if (autominerinterval * intervale > 50 / (1.5 ** (artifactstat[0]["level"] + 1))) {
+    if (artifactstat[0]["level"] >= 1) {intervalLimit = 50 / (1.5 ** (artifactstat[0]["level"] + 1))}
+    else {intervalLimit = 50}
+    nextinterval = autominerinterval * intervale
+    if (nextinterval > intervalLimit) {
       if (iron >= Math.floor(300 * (1.35 + 0.005 * intervalupgs) ** intervalupgs)) {
-        document.getElementById('autominerintervalup').innerHTML = 'Interval Upgrade<br>' + (1000 * autominerinterval).toFixed(1) + 'ms > ' + (intervale * autominerinterval).toFixed(1) + 'ms<br><span style="color: #eee; font-size:2.2vmin">' + notation(Math.floor(300 * (1.35 + 0.005 * intervalupgs) ** intervalupgs)) + ' Iron</span>'
+        document.getElementById('autominerintervalup').innerHTML = 'Interval Upgrade<br>' + (1000 * autominerinterval).toFixed(1) + 'ms > ' + nextinterval.toFixed(1) + 'ms<br><span style="color: #eee; font-size:2.2vmin">' + notation(Math.floor(300 * (1.35 + 0.005 * intervalupgs) ** intervalupgs)) + ' Iron</span>'
       } else {
-        document.getElementById('autominerintervalup').innerHTML = 'Interval Upgrade<br>' + (1000 * autominerinterval).toFixed(1) + 'ms > ' + (intervale * autominerinterval).toFixed(1) + 'ms<br>' + notation(Math.floor(300 * (1.35 + 0.005 * intervalupgs) ** intervalupgs)) + ' Iron'
+        document.getElementById('autominerintervalup').innerHTML = 'Interval Upgrade<br>' + (1000 * autominerinterval).toFixed(1) + 'ms > ' + nextinterval.toFixed(1) + 'ms<br>' + notation(Math.floor(300 * (1.35 + 0.005 * intervalupgs) ** intervalupgs)) + ' Iron'
       }
-    } else if (autominerinterval * 1000 > 50 / (1.5 ** (artifactstat[0]["level"] + 1))) {
+    } else if (autominerinterval * 1000 > intervalLimit) {
       if (iron >= Math.floor(300 * (1.35 + 0.005 * intervalupgs) ** intervalupgs)) {
-        document.getElementById('autominerintervalup').innerHTML = 'Interval Upgrade<br>' + (1000 * autominerinterval).toFixed(1) + 'ms > ' + (50 / (1.5 ** (artifactstat[0]["level"] + 1))).toFixed(1) + 'ms<br><span style="color: #eee; font-size:2.2vmin">' + notation(Math.floor(300 * (1.35 + 0.005 * intervalupgs) ** intervalupgs)) + ' Iron</span>'
+        document.getElementById('autominerintervalup').innerHTML = 'Interval Upgrade<br>' + (1000 * autominerinterval).toFixed(1) + 'ms > ' + intervalLimit.toFixed(1) + 'ms<br><span style="color: #eee; font-size:2.2vmin">' + notation(Math.floor(300 * (1.35 + 0.005 * intervalupgs) ** intervalupgs)) + ' Iron</span>'
       } else {
-        document.getElementById('autominerintervalup').innerHTML = 'Interval Upgrade<br>' + (1000 * autominerinterval).toFixed(1) + 'ms > ' + (50 / (1.5 ** (artifactstat[0]["level"] + 1))).toFixed(1) + 'ms<br>' + notation(Math.floor(300 * (1.35 + 0.005 * intervalupgs) ** intervalupgs)) + ' Iron'
+        document.getElementById('autominerintervalup').innerHTML = 'Interval Upgrade<br>' + (1000 * autominerinterval).toFixed(1) + 'ms > ' + intervalLimit.toFixed(1) + 'ms<br>' + notation(Math.floor(300 * (1.35 + 0.005 * intervalupgs) ** intervalupgs)) + ' Iron'
       }
     } else {
-      document.getElementById('autominerintervalup').innerHTML = 'Interval Upgrade<br> ' + (50 / (1.5 ** (artifactstat[0]["level"] + 1))).toFixed(1) + ' ms'
+      document.getElementById('autominerintervalup').innerHTML = 'Interval Upgrade<br> ' + intervalLimit.toFixed(1) + ' ms'
     }
     if (copper >= Math.floor(1000 * ((1.15 * (1.005 ** powerupgs)) ** powerupgs))) {
       document.getElementById('autominerpowerup').innerHTML = 'Power Upgrade<br>' + notation(100 * ((1.15 ** powerupgs) + powerupgs)) + ' > ' + notation(100 * ((1.15 ** (powerupgs + 1)) + powerupgs + 1)) + '<br><span style="color: #eee; font-size:2.2vmin">' + notation(Math.floor(1000 * ((1.15 * (1.005 ** powerupgs)) ** powerupgs))) + ' Copper</span>'
@@ -185,7 +188,7 @@ function autominer() {
     artifactstat[2]["stat"] = "Cooldown x" + ((artifactstat[2]["level"] + 1) ** 1.2).toFixed(2) + ', Mine Mult x' + ((artifactstat[2]["level"] + 1) ** 1.4).toFixed(2)
     artifactstat[3]["stat"] = "Autominer Power x" + (playtime ** (0.09 + (0.01 * artifactstat[3]["level"]))).toFixed(3)
     artifactstat[4]["stat"] = "Sell Multiplier x" + (minecount ** (0.18 + (0.02 * artifactstat[4]["level"]))).toFixed(3)
-    artifactstat[5]["stat"] = "Cooldown x5.00, Automine Duration ∞min"
+    artifactstat[5]["stat"] = "Cooldown x5.00, Automine Duration Infinitymin"
     buyabletest(0)
     buyabletest(1)
     buyabletest(2)
