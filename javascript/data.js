@@ -115,6 +115,8 @@ function exportdata() {
     rubytype = [0, 1, 1, 0]
     cooldown = 50
     sellmult = 1
+    upgrades = 0
+    oreupgrades = 0
     for (i = 0; i < upgradecopied.length; i++) {
       upgradeboughtlist2.push(upgradecopied[i] - i)
     }
