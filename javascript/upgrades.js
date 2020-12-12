@@ -64,6 +64,15 @@ function buyabletest(num) {
           if (emeraldtype[0] == 1) { i = true }
           else { i = false }
         }
+      } else if (upgradelist[num].split("|")[0].split(" ")[0] == "Ruby") {
+        if (upgradelist[num].split("|")[0].split(" ")[1] == "Max" ||
+          upgradelist[num].split("|")[0].split(" ")[1] == "Base") {
+          if (rubytype[0] == 2) { i = true }
+          else { i = false }
+        } else {
+          if (rubytype[0] == 1) { i = true }
+          else { i = false }
+        }
       } else {
         i = true
       }
@@ -139,6 +148,15 @@ function buyabletest(num) {
           if (emeraldtype[0] == 1) { i = true }
           else { i = false }
         }
+      } else if (upgradelist[num].split("|")[0].split(" ")[0] == "Ruby") {
+        if (upgradelist[num].split("|")[0].split(" ")[1] == "Max" ||
+          upgradelist[num].split("|")[0].split(" ")[1] == "Base") {
+          if (rubytype[0] == 2) { i = true }
+          else { i = false }
+        } else {
+          if (rubytype[0] == 1) { i = true }
+          else { i = false }
+        }
       } else {
         i = true
       }
@@ -194,6 +212,9 @@ function pickupgrade(num) {
       }
       if (cost == "Emerald") {
         emerald -= oreupgradelist[num].split("|")[1].split(" ")[1]
+      }
+      if (cost == "Ruby") {
+        ruby -= oreupgradelist[num].split("|")[1].split(" ")[1]
       }
       oreupgrades += 1
       oreupgradeboughtlist.push(oreupgradelistr.indexOf(oreupgradelist[num]))
@@ -323,6 +344,21 @@ function upgradev2(num, upgradelist) {
     }
     if (upgradelist[num].split("|")[0].split(" ")[1] == "Base") {
       emeraldtype[2] += Number(upgradelist[num].split("|")[0].split(" ")[2])
+    }
+  }
+  if (upgradelist[num].split("|")[0].split(" ")[0] == "Ruby") {
+    if (upgradelist[num].split("|")[0].split(" ")[1] == "Chance") {
+      if (upgradelist[num].split("|")[0].split(" ")[2].length == 4) {
+        rubytype[1] += Number(upgradelist[num].split("|")[0].split(" ")[2].substring(1, 3))
+      } else {
+        rubytype[1] += Number(upgradelist[num].split("|")[0].split(" ")[2].substring(1, 2))
+      }
+    }
+    if (upgradelist[num].split("|")[0].split(" ")[1] == "Max") {
+      rubytype[3] += Number(upgradelist[num].split("|")[0].split(" ")[2])
+    }
+    if (upgradelist[num].split("|")[0].split(" ")[1] == "Base") {
+      rubytype[2] += Number(upgradelist[num].split("|")[0].split(" ")[2])
     }
   }
   if (upgradelist[num].split("|")[0].split(" ")[0] == "Cooldown") {
@@ -482,6 +518,27 @@ function upgrade(num, upgradelist) {
       } else { return 0 }
     }
   }
+  if (upgradelist[num].split("|")[0].split(" ")[0] == "Ruby") {
+    if (upgradelist[num].split("|")[0].split(" ")[1] == "Chance") {
+      if (rubytype[0] == 1) {
+        if (upgradelist[num].split("|")[0].split(" ")[2].length == 4) {
+          rubytype[1] += Number(upgradelist[num].split("|")[0].split(" ")[2].substring(1, 3))
+        } else {
+          rubytype[1] += Number(upgradelist[num].split("|")[0].split(" ")[2].substring(1, 2))
+        }
+      } else { return 0 }
+    }
+    if (upgradelist[num].split("|")[0].split(" ")[1] == "Max") {
+      if (rubytype[0] == 2) {
+        rubytype[3] += Number(upgradelist[num].split("|")[0].split(" ")[2])
+      } else { return 0 }
+    }
+    if (upgradelist[num].split("|")[0].split(" ")[1] == "Base") {
+      if (rubytype[0] == 2) {
+        rubytype[2] += Number(upgradelist[num].split("|")[0].split(" ")[2])
+      } else { return 0 }
+    }
+  }
   if (upgradelist[num].split("|")[0].split(" ")[0] == "Cooldown") {
     cooldown -= 10 * Number(upgradelist[num].split("|")[0].split(" ")[1].substring(1, 4))
   }
@@ -492,5 +549,42 @@ function upgrade(num, upgradelist) {
     if (upgradelist[num].split("|")[0].split(" ")[1] == "Power") {
       autominerpowermult *= Number(upgradelist[num].split("|")[0].split(" ")[2].substring(1, upgradelist[num].split("|")[0].split(" ")[2].length))
     }
+  }
+}
+function test() {
+  if (upgrades >= pickupglist[picklevel] && pickupgprice[picklevel].split(" ")[0] <= orelist[picklevel]) {
+    if (picklevel == 0) {
+      stone -= 10
+      coppertype[0] = 1
+    }
+    if (picklevel == 1) {
+      copper -= 20
+      irontype[0] = 1
+    }
+    if (picklevel == 2) {
+      iron -= 30
+      silvertype[0] = 1
+    }
+    if (picklevel == 3) {
+      silver -= 40
+      goldtype[0] = 1
+    }
+    if (picklevel == 4) {
+      gold -= 60
+      platinumtype[0] = 1
+    }
+    if (picklevel == 5) {
+      platinum -= 300
+      diamondtype[0] = 1
+    }
+    if (picklevel == 6) {
+      diamond -= 1200
+      emeraldtype[0] = 1
+    }
+    if (picklevel == 7) {
+      emerald -= 3000
+      rubytype[0] = 1
+    }
+    picklevel++
   }
 }

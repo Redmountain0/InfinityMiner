@@ -9,6 +9,7 @@ gold = 0
 platinum = 0
 diamond = 0
 emerald = 0
+ruby = 0
 coin = 0
 sellmult = 1
 picklevel = 0
@@ -23,6 +24,8 @@ intervalupgs = 0
 powerupgs = 0
 playtime = 0
 minecount = 0
+clickedartifact = -1
+clicktimer = 0
 upgradelistr = ['Stone Max +1 | 50 Coin', 'Cooldown -1.0s | 80 Coin', 'Stone Base +1 | 120 Coin',
   'Copper Chance +10% | 300 Coin', 'Stone Max +3 | 350 Coin', 'Copper Chance +15% | 400 Coin',
   'Stone Base +2 | 400 Coin', 'Sell Multiplier x1.5 | 500 Coin', 'Cooldown -0.5s | 500 Coin',
@@ -72,7 +75,19 @@ upgradelistr = ['Stone Max +1 | 50 Coin', 'Cooldown -1.0s | 80 Coin', 'Stone Bas
   'Gold Max +2000 | 2.0e18 Coin', 'Diamond Max +3 | 3.0e18 Coin', 'Iron Base +8.0e5 | 3.0e18 Coin',
   'Iron Max +1.0e6 | 3.5e18 Coin', 'Diamond Base +10 | 5.0e18 Coin', 'Emerald Chance +1% | 6.0e18 Coin',
   'Sell Multiplier x2.0 | 1.0e19 Coin', 'Emerald Chance +1% | 1.0e19 Coin', 'Emerald Chance +2% | 1.5e19 Coin',
-  'Emerald Chance +2% | 2.0e19 Coin', 'Emerald Chance +3% | 4.0e19 Coin']
+  'Emerald Chance +2% | 2.0e19 Coin', 'Emerald Chance +3% | 4.0e19 Coin', 'Diamond Base +40 | 5.0e19 Coin',
+  'Platinum Base +1000 | 5.0e19 Coin', 'Gold Base +8888 | 5.0e19 Coin', 'Emerald Chance +5% | 1.0e20 Coin',
+  'Diamond Base +123 | 1.0e20 Coin', 'Iron Base +2.0e7 | 1.5e20 Coin', 'Emerald Chance +5% | 2.0e20 Coin',
+  'Emerald Chance +10% | 3.0e20 Coin', 'Diamond Max +500 | 5.0e20 Coin', 'Emerald Chance +10% | 5.0e20 Coin',
+  'Diamond Base +400 | 7.0e20 Coin', 'Diamond Base +1234 | 1.0e21 Coin', 'Emerald Chance +20% | 1.0e21 Coin',
+  'Emerald Chance +20% | 1.5e21 Coin', 'Emerald Chance +20% | 3.0e21 Coin', 'Emerald Max +1 | 1.0e22 Coin',
+  'Emerald Base +1 | 2.0e22 Coin', 'Emerald Base +1 | 3.0e22 Coin', 'Cooldown -0.1s | 5.0e22 Coin',
+  'Iron Max +3.0e9 | 5.0e22 Coin', 'Copper Max +3.0e10 | 5.0e22 Coin', 'Sell Multiplier x1.5 | 8.0e22 Coin',
+  'Emerald Base +4 | 1.2e23 Coin', 'Ruby Chance +1% | 2.0e23 Coin', 'Emerald Base +5 | 3.0e23 Coin',
+  'Emerald Max +8 | 5.0e23 Coin', 'Ruby Chance +1% | 7.5e23 Coin', 'Ruby Chance +2% | 2.0e24 Coin',
+  'Diamond Base +15000 | 2.5e24 Coin', 'Iron Base +9.9e9 | 2.5e24 Coin', 'Copper Base +9.9e10 | 5.0e24 Coin',
+  'Ruby Chance +5% | 1.5e25 Coin', 'Emerald Max +150 | 4.0e25 Coin', 'Stone Base +1.0e12 | 5.0e25 Coin',
+  'Ruby Chance +10% | 1.0e26 Coin', 'Ruby Chance +10% | 2.0e26 Coin', 'Copper Base +1.0e12 | 3.0e26 Coin']
 oreupgradelistr =
   ['Sell Multiplier x5.0 | 1.4e7 Stone', 'Gold Base +25 | 15 Platinum', 'Iron Base +1500 | 1.0e5 Iron',
     'Copper Max +1.0e4 | 5.5e5 Copper', 'Cooldown -0.1s | 50 Platinum', 'Platinum Max +1 | 4000 Gold',
@@ -87,7 +102,16 @@ oreupgradelistr =
     'Stone Base +1.5e7 | 400 Diamond', 'Copper Base +9.0e6 | 5.0e9 Stone', 'Autominer Power x2.0 | 700 Diamond',
     'Sell Multiplier x2.0 | 5.0e6 Silver', 'Diamond Base +4 | 1000 Diamond', 'Diamond Max +7 | 1000 Diamond',
     'Sell Multiplier x1.6 | 1 Emerald', 'Diamond Max +25 | 2 Emerald', 'Autominer Power x2.0 | 10 Emerald',
-    'Stone Base +8.0e7 | 4.0e10 Stone', 'Copper Base +5.0e7 | 2.0e9 Copper']
+    'Stone Base +8.0e7 | 4.0e10 Stone', 'Copper Base +5.0e7 | 2.0e9 Copper', 'Stone Base +6.0e10 | 5.0e12 Stone',
+    'Copper Base +1.0e10 | 2.0e11 Copper', 'Iron Base +1.0e9 | 8.0e10 Iron', 'Silver Base +7.0e7 | 5.0e9 Silver',
+    'Gold Base +5.0e6 | 5.0e8 Gold', 'Platinum Base +2.0e5 | 8.0e6 Platinum', 'Diamond Max +1500 | 5.0e4 Diamond',
+    'Emerald Max +1 | 200 Emerald', 'Stone Max +1.0e11 | 1.5e5 Diamond', 'Sell Multiplier x2.0 | 1.0e14 Stone',
+    'Autominer Power x1.2 | 500 Emerald', 'Emerald Max +3 | 2.5e5 Diamond', 'Emerald Base +2 | 3.0e5 Diamond',
+    'Emerald Base +3 | 3.0e8 Platinum', 'Autominer Power x6.0 | 1 Ruby', 'Autominer Power x5.0 | 2 Ruby',
+    'Sell Multiplier x2.0 | 2.0e5 Diamond', 'Autominer Power x4.0 | 4 Ruby', 'Ruby Chance +2% | 8 Ruby',
+    'Ruby Chance +3% | 16 Ruby', 'Cooldown -0.1s | 5.0e14 Stone', 'Autominer Power x3.0 | 1.0e4 Emerald',
+    'Autominer Power x2.0 | 32 Ruby', 'Emerald Base +80 | 8.0e6 Diamond', 'Ruby Chance +5% | 3.0e11 Silver',
+    'Ruby Chance +10% | 128 Ruby']
 function deepcopy(a, b) {
   if (a.length <= b.length) { return }
   for (j = 0; a.length != b.length; j++) {
@@ -95,12 +119,12 @@ function deepcopy(a, b) {
   }
   console.log(a, b)
 }
-pickupglist = [3, 15, 30, 55, 75, 110, 135, 160]
-pickupgprice = ['10 Stone', '20 Copper', '30 Iron', '40 Silver', '60 Gold', '300 Platinum', '1200 Diamond', '3000 Emerald']
+pickupglist = [3, 15, 30, 55, 75, 110, 135, 170, 220]
+pickupgprice = ['10 Stone', '20 Copper', '30 Iron', '40 Silver', '60 Gold', '300 Platinum', '1200 Diamond', '3000 Emerald', '10000 Ruby']
 tierupgprice = ['NaN Stone', '3000 Copper', '2000 Iron', '1500 Silver', '1750 Gold', '4000 Platinum', '1.0e4 Diamond', 'Infinity Emerald']
-picknames = ['Wooden Pickaxe', 'Stone Pickaxe', 'Copper Pickaxe', 'Iron Pickaxe', 'Silver Pickaxe', 'Gold Pickaxe', 'Platinum Pickaxe', 'Diamond Pickaxe']
-pickcolor = ['#742', '#555', '#fb5', '#ccc', '#ddd', '#ee6', '#dda', '#9cf']
-orelist = [stone, copper, iron, silver, gold, platinum, diamond, emerald]
+picknames = ['Wooden Pickaxe', 'Stone Pickaxe', 'Copper Pickaxe', 'Iron Pickaxe', 'Silver Pickaxe', 'Gold Pickaxe', 'Platinum Pickaxe', 'Diamond Pickaxe', 'Emerald Pickaxe']
+pickcolor = ['#742', '#555', '#fb5', '#ccc', '#ddd', '#ee6', '#dda', '#9cf', '#9fc', '#f99']
+orelist = [stone, copper, iron, silver, gold, platinum, diamond, emerald, ruby]
 orelists = ["Stone", "Copper", "Iron", "Silver", "Gold", "Platinum", "Diamond", "Emerald", "Ruby"]
 // [type, base, max]
 // [type, percent]
@@ -115,6 +139,7 @@ goldtype = [0, 5, 1, 0]
 platinumtype = [0, 3, 1, 0]
 diamondtype = [0, 2, 1, 0]
 emeraldtype = [0, 1, 1, 0]
+rubytype = [0, 1, 1, 0]
 selectedupgrade = 0
 selectedartifact = 0
 upgradecopied = []
@@ -122,18 +147,27 @@ oreupgradelist = []
 oreupgradeboughtlist = []
 oreupgradecopied = []
 oreupgrades = 0
+realinterval = 1
+intervalboost = 1
+playtimeboost = 1
 cost = 0
+notationsel = 0
+notationlist = ["Standard", "Scientific", "Engineering", "Letters", "Logarithm", "E̟R̗R̽O̮R̡"]
 box = [0, 0, 0, 0, 0] // common, uncommon, rare, epic, legendary
+boxgain = 0
+boxgainupgs = 0
+boxchanceupgs = 0
 artifactstat = [
   { id: 0, level: 0, maxlevel: 30, name: "Improved Gear", lore: "Decrease Autominer Interval Limit", rarity: 0 },
   { id: 1, level: 0, maxlevel: 20, name: "Broken Necklace", lore: "Critical Mine with a constant Probability", rarity: 0 },
   { id: 2, level: 0, maxlevel: 50, name: "Slow Machine", lore: "Increase Cooldown, but you get more ores", rarity: 0 },
   { id: 3, level: 0, maxlevel: 15, name: "Automated Clock", lore: "Increase Autominer Power based on Time Played", rarity: 1 },
   { id: 4, level: 0, maxlevel: 30, name: "Enchanted Ore", lore: "Increase Sell Multiplier based on Mine Count", rarity: 1 },
-  { id: 5, level: 0, maxlevel: 10, name: "Mechanical Pickaxe", lore: "Mine Automatically(Not Autominer), but Cooldown in longer", rarity: 2 }
+  { id: 5, level: 0, maxlevel: 10, name: "Mechanical Pickaxe", lore: "Mine Automatically(Not Autominer), but Cooldown in longer", rarity: 2 },
+  { id: 6, level: 0, maxlevel: 10, name: "Inferno Autominer", lore: "Autominer power multiplier Increases over time but resets with target ore changes", rarity: 2 }
 ]
 artifactpage = 0
-debug = true
+debug = false
 // artifacts
 /*
 Improved Gear / Decrease Autominer Interval Limit / MAX LEVEL 30 / Common

@@ -1,7 +1,7 @@
   #stone {
     color: #777;
     position: absolute;
-    top: 2%; left: 20%
+    top: 2%; left: 18%
   }
   #stonesell1 {
     position: absolute;
@@ -14,7 +14,7 @@
   #copper {
     color: #fb5;
     position: absolute;
-    top: 5%; left: 20%
+    top: 5%; left: 18%
   }
   #coppersell1 {
     position: absolute;
@@ -27,7 +27,7 @@
   #iron {
     color: #ccc;
     position: absolute;
-    top: 8%; left: 20%
+    top: 8%; left: 18%
   }
   #ironsell1 {
     position: absolute;
@@ -40,7 +40,7 @@
   #silver {
     color: #ddd;
     position: absolute;
-    top: 11%; left: 20%
+    top: 11%; left: 18%
   }
   #silversell1 {
     position: absolute;
@@ -53,7 +53,7 @@
   #gold {
     color: #ee6;
     position: absolute;
-    top: 14%; left: 20%
+    top: 14%; left: 18%
   }
   #goldsell1 {
     position: absolute;
@@ -66,7 +66,7 @@
   #platinum {
     color: #dda;
     position: absolute;
-    top: 17%; left: 20%
+    top: 17%; left: 18%
   }
   #platinumsell1 {
     position: absolute;
@@ -79,7 +79,7 @@
   #diamond {
     color: #9cf;
     position: absolute;
-    top: 20%; left: 20%
+    top: 20%; left: 18%
   }
   #diamondsell1 {
     position: absolute;
@@ -92,7 +92,7 @@
   #emerald {
     color: #9fc;
     position: absolute;
-    top: 23%; left: 20%
+    top: 23%; left: 18%
   }
   #emeraldsell1 {
     position: absolute;
@@ -105,20 +105,28 @@
   #ruby {
     color: #f99;
     position: absolute;
-    top: 26%; left: 20%
+    top: 26%; left: 18%
+  }
+  #rubysell1 {
+    position: absolute;
+    top: 26%; left: 30%
+  }
+  #rubysellmax {
+    position: absolute;
+    top: 26%; left: 34%
   }
   #sapphire {
     color: #66f;
     position: absolute;
-    top: 29%; left: 20%
+    top: 29%; left: 18%
   }
   #topaz {
     color: #fc6;
     position: absolute;
-    top: 32%; left: 20%
+    top: 32%; left: 18%
   }
   #obsidian {
     color: #444;
     position: absolute;
-    top: 35%; left: 20%
+    top: 35%; left: 18%
   }

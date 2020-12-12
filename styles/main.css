@@ -172,6 +172,15 @@
     text-shadow: 0px 0px 10px #444;
     width: 15%; height: 15%;
   }
+  #notationchange {
+    position: absolute;
+    top: 65%; left: 77%;
+    width: 13%; height: 7%;
+    font-size: 2.9vmin;
+    color: black;
+    background-color: #ccc;
+    transition: 0.2s
+  }
   #save {
     position: absolute;
     top: 75%; left: 75%;
@@ -181,12 +190,12 @@
     background-color: #ccc;
     transition: 0.2s
   }
-  #save:hover, #load:hover, #export:hover, #import:hover, #discord:hover, #reset:hover {
+  #notationchange:hover, #save:hover, #load:hover, #export:hover, #import:hover, #discord:hover, #reset:hover {
     background-color: #bbb;
     transform: scale(0.97);
     transition: 0.2s
   }
-  #save:active, #load:active, #export:active, #import:active, #discord:active, #reset:active {
+  #notationchange:active, #save:active, #load:active, #export:active, #import:active, #discord:active, #reset:active {
     transform: scale(0.93);
     transition: 0.1s
   }
@@ -454,8 +463,13 @@
     background-color: #909090;
   }
   #artifacts1:hover, #artifacts2:hover, #artifacts3:hover, #artifacts4:hover {
-    transform: scale(1.02);
+    transform: scale(1.015);
     transition: 0.2s
+  }
+  #artifacts1:active, #artifacts2:active, #artifacts3:active, #artifacts4:active {
+    transform: scale(1.03);
+    transition: 0.1s;
+    background-color: #aaa;
   }
   #artifactsright:hover, #artifactsleft:hover {
     color: #000;
@@ -466,6 +480,17 @@
     color: #000;
     transform: scale(1.2);
     transition: 0.1s
+  }
+  #automine {
+    position: absolute;
+    top: 17%; left: 9%;
+    width: 6%; height: 6%;
+    background-color: #aaa;
+    transition: 0.2s;
+  }
+  #automine:hover {
+    transform: scale(1.05);
+    transition: 0.2s;
   }
   @keyframes light {
     0%, 100%{
