@@ -280,14 +280,23 @@
           seed2 = random(0, commons.length - 1)
           console.log(commons)
           artifactstat[artifactstat[seed2]["id"]]["level"] += 1
+          if (artifactstat[artifactstat[seed2]["id"]]["level"] > artifactstat[artifactstat[seed2]["id"]]["maxlevel"]) {
+            artifactstat[artifactstat[seed2]["id"]]["level"] = artifactstat[artifactstat[seed2]["id"]]["maxlevel"]
+          }
         } else if (seed <= 9500) {
           uncommons = artifactstat.filter(isUncommon)
           seed2 = random(1, uncommons.length)
           artifactstat[artifactstat[seed2]["id"]]["level"] += 1
+          if (artifactstat[artifactstat[seed2]["id"]]["level"] > artifactstat[artifactstat[seed2]["id"]]["maxlevel"]) {
+            artifactstat[artifactstat[seed2]["id"]]["level"] = artifactstat[artifactstat[seed2]["id"]]["maxlevel"]
+          }
         } else if (seed <= 10000) {
           rares = artifactstat.filter(isRare)
           seed2 = random(1, rares.length)
           artifactstat[artifactstat[seed2]["id"]]["level"] += 1
+          if (artifactstat[artifactstat[seed2]["id"]]["level"] > artifactstat[artifactstat[seed2]["id"]]["maxlevel"]) {
+            artifactstat[artifactstat[seed2]["id"]]["level"] = artifactstat[artifactstat[seed2]["id"]]["maxlevel"]
+          }
         }
       }
     }
